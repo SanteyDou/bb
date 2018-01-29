@@ -14,4 +14,5 @@ class Storage extends Model
     protected $fillable = [
         'place', 'matchcode', 'min_quantity', 'location',
     ];
+
 }

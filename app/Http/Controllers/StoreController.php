@@ -10,4 +10,9 @@ class StoreController extends Controller
     {
         return view('main');
     }
+
+    public function store()
+    {
+        return redirect()->back();
+    }
 }

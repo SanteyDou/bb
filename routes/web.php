@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'StoreController@index');
+Route::get('/', 'StoreController@index')->name('main');
+
+Route::post('/store', 'StoreController@store')->name('store');
 
 Auth::routes();
 
