@@ -12,7 +12,7 @@
 
         <!-- Styles -->
         <style>
-            html, body {
+        html, body {
                 background-color: #fff;
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
@@ -62,14 +62,14 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
-        </style>
+            </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">домашня сторінка</a>
+                        <a href="{{ url('/admin') }}">Адміністрування</a>
                     @else
                         <a href="{{ route('login') }}">Вхід</a>
                         <a href="{{ route('register') }}">Реєстрація</a>

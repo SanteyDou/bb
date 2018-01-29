@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'StoreController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'Admin\StoreController@index')->middleware('auth');
+});
+
+//Route::get('/home', 'HomeController@index')->name('home');
