@@ -47,7 +47,7 @@
                             <li><a href="{{ route('register') }}">Реєстрація</a></li>
                         @else
                             @if ( Auth::user()->is_admin )
-                                <li><a href="{{ route('admin') }}">Адмінка</a></li>
+                                <li><a href="{{ route('admin') }}" >Адмінка</a></li>
                             @endif
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
@@ -60,7 +60,7 @@
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Вихід
-                                        </a>
+                                        </a>                                        
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
@@ -73,7 +73,6 @@
                 </div>
             </div>
         </nav>
-
         @yield('content')
     </div>
 

@@ -9,11 +9,25 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="#">
-                  <span data-feather="home"></span>
-                  Склади <span class="sr-only">(current)</span>
-                </a>
+                  <div class="nav-link" style="color: #636b6f; padding: 0 15px">Склади по локаціям:</div>
               </li>
+                <ul class="nav">
+                  <li class="nav-item" >
+                    <a class="nav-link active" href="/admin/ter" style="padding: 10px 50px">
+                      Тернопіль
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="/admin/che" style="padding: 10px 50px">
+                      Чернівці
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="/admin/cho" style="padding: 10px 50px">
+                      Чортків
+                    </a>
+                  </li>
+                </ul>
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="file"></span>
@@ -50,3 +64,15 @@
   </div>
 
 @endsection
+
+<!-- <nav class="nav flex-column">
+  <li class="nav-item dropdown-menu">
+    <h6 class="dropdown-header">Склади по локаціям</h6>
+    <a class="dropdown-item" href="#" style="padding: 5px 40px">- Тернопіль</a>
+    <a class="dropdown-item" href="#" style="padding: 5px 40px">- Чернівці</a>
+    <a class="dropdown-item" href="#" style="padding: 5px 40px">- Чортків</a>
+    <a class="dropdown-item" href="#">Залишки</a>
+    <a class="dropdown-item" href="#">Працівники</a>
+    <a class="dropdown-item" href="#">Історія</a>
+  </li>
+</nav> -->

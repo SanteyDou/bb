@@ -9,6 +9,17 @@ class StoreController extends Controller
 {
     public function index()
     {
-        return view('adminDB');
+        return view('admin.index');
+    }
+
+    public function storeByLocation($loc)
+    {
+        
+        if (in_array($loc, ['ter', 'che', 'cho'])) {
+            // dump($loc);
+            return view('admin.store', ['loc' => $loc]);
+        };
+
+        return view('admin.index');
     }
 }

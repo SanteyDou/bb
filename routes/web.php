@@ -19,4 +19,5 @@ Auth::routes();
 
 Route::prefix('admin')->group(function () {
     Route::get('/', 'Admin\StoreController@index')->middleware(['auth', 'admin'])->name('admin');
+    Route::get('/{loc?}', 'Admin\StoreController@storeByLocation')->middleware(['auth', 'admin'])->name('admin');
 });
