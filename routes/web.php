@@ -18,7 +18,5 @@ Route::post('/store', 'StoreController@store')->name('store');
 Auth::routes();
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', 'Admin\StoreController@index')->middleware('auth');
+    Route::get('/', 'Admin\StoreController@index')->middleware(['auth', 'admin'])->name('admin');
 });
-
-//Route::get('/home', 'HomeController@index')->name('home');
