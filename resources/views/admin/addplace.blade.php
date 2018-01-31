@@ -13,11 +13,11 @@
 
     <div class="form-group">
       <label for="place">Місце на складі</label>
-      <input type="text" class="form-control" name="place" placeholder="X01-1">
+      <input type="text" class="form-control" name="place" placeholder="X01-1" required>
     </div>
     <div class="form-group">
       <label for="matchcode">Матч-код</label>
-      <input type="text" class="form-control" name="matchcode" placeholder="XXX 125 XXX">
+      <input type="text" class="form-control" name="matchcode" placeholder="XXX 125 XXX" required>
     </div>
     <div class="form-group">
       <label for="min-quantity">Мінімальна кількість</label>
