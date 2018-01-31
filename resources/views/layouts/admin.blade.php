@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row">
         
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <nav class="col-sm-2 d-none d-md-block bg-light sidebar">
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
@@ -57,8 +57,9 @@
           </div>
         </nav>
 
-        @yield('admin_content')
-
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          @yield('admin_content')
+        </main>
 
     </div>
   </div>

@@ -19,5 +19,7 @@ Auth::routes();
 
 Route::prefix('admin')->group(function () {
     Route::get('/', 'Admin\StoreController@index')->middleware(['auth', 'admin'])->name('admin');
-    Route::get('/{loc?}', 'Admin\StoreController@storeByLocation')->middleware(['auth', 'admin'])->name('admin');
+    Route::get('/{loc?}', 'Admin\StoreController@storeByLocation')->middleware(['auth', 'admin'])->name('admin.store');
+    Route::get('/{loc?}/add', 'Admin\StoreController@addPlaceForm')->middleware(['auth', 'admin'])->name('admin.add');
+    Route::post('/{loc?}/add', 'Admin\StoreController@addPlace')->middleware(['auth', 'admin'])->name('admin.add');
 });
