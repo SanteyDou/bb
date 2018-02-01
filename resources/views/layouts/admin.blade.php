@@ -29,7 +29,7 @@
                   </li>
                 </ul>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/admin/users">
                   <span data-feather="file"></span>
                   Користувачі
                 </a>
