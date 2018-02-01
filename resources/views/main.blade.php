@@ -103,9 +103,7 @@
                                 <label class="form-check-label" for="remove">
                                     Взяти зі складу
                                 </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="action" id="add" value="add">
+                                <input class="form-check-input" type="radio" name="action" id="add" value="add" style="margin:0 0 0 50px">
                                 <label class="form-check-label" for="add">
                                     Внести на склад
                                 </label>
