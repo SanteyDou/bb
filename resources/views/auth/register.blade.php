@@ -29,7 +29,7 @@
                             <label for="personal_id" class="col-md-4 control-label">Табельний номер</label>
 
                             <div class="col-md-6">
-                                <input id="personal_id" type="text" class="form-control" name="personal_id" value="{{ old('personal_id') }}" required autofocus>
+                                <input id="personal_id" type="text" class="form-control" name="personal_id" value="{{ old('personal_id') }}" placeholder="S12345" required autofocus>
 
                                 @if ($errors->has('personal_id'))
                                     <span class="help-block">

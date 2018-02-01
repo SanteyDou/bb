@@ -12,8 +12,7 @@
 */
 
 Route::get('/', 'StoreController@index')->name('main');
-
-Route::post('/store', 'StoreController@store')->name('store');
+Route::post('/', 'StoreController@store');
 
 Auth::routes();
 

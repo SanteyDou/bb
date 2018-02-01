@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Storage;
 
 class StoreController extends Controller
 {
@@ -11,8 +12,23 @@ class StoreController extends Controller
         return view('main');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        return redirect()->back();
+        $validatedData = $request->validate([
+            'personal_id' => 'required|regex:/(^S+\d{5})/|max:6',
+            'quantity' => 'required|integer',
+        ]);
+
+        $place = Storage::where('place', $request->input('place'))->where('location', $request->input('location'))->first();
+        
+        if ($request->input('action') == 'add')
+            $place->quantity += $request->input('quantity');
+        else if($request->input('action') == 'remove')
+            $place->quantity -= $request->input('quantity');
+
+        $place->update();
+
+        return view('main')->with('message', 'Дані внесено в базу');
     }
+    
 }

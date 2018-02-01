@@ -6,17 +6,17 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Склад</div>
+                <div class="panel-heading"><h3>Прихід-розхід склад Brett-Bau</h3></div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('store') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('main') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('personal_id') ? ' has-error' : '' }}">
                             <label for="personal_id" class="col-md-3 control-label">Табельний номер</label>
 
                             <div class="col-md-2">
-                                <input id="personal_id" type="text" class="form-control" name="personal_id" value="{{ old('personal_id') }}" required autofocus>
+                                <input id="personal_id" type="text" class="form-control" name="personal_id" value="{{ old('personal_id') }}" placeholder="S12345" required autofocus>
 
                                 @if ($errors->has('personal_id'))
                                     <span class="help-block">
@@ -46,7 +46,7 @@
                             <label for="place" class="col-md-3 control-label">Місце</label>
 
                             <div class="col-md-7">
-                                <input id="place" type="text" class="form-control" name="place" required>
+                                <input id="place" type="text" class="form-control" name="place" value="{{ old('place') }}" placeholder="X00-0" required>
 
                                 @if ($errors->has('place'))
                                     <span class="help-block">
@@ -60,7 +60,7 @@
                             <label for="matchcode" class="col-md-3 control-label">Матч код</label>
 
                             <div class="col-md-5">
-                                <input id="matchcode" type="text" class="form-control" name="matchcode" required>
+                                <input id="matchcode" type="text" class="form-control" name="matchcode" value="{{ old('matchcode') }}" required>
                             </div>
                             <div class="col-md-2">
                                 <button id="search" type="button" class="btn btn-default form-control">
@@ -69,37 +69,55 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('quantity') ? ' has-error' : '' }}">
                             
-                            <label for="number" class="col-md-3 control-label">Кількість</label>
+                            <label for="quantity" class="col-md-3 control-label">Кількість</label>
 
                             <div class="col-md-3">
-                                <input id="number" type="text" name="number" class="form-control" required>
+                                <input id="quantity" type="text" name="quantity" class="form-control" required>
+                                @if ($errors->has('quantity'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('quantity') }}</strong>
+                                    </span>
+                                @endif
                             </div>
 
                             <div class="col-md-2">
-                                <button id="minus" type="button" class="btn btn-info form-control">
-                                    -
+                                <button id="minus" type="button" class="btn btn-info form-control" style="font-size: 26px; padding: 0">
+                                    - 1
                                 </button>
                             </div>
 
                             <div class="col-md-2">
-                                <button id="plus" type="button" class="btn btn-info form-control">
-                                    +
+                                <button id="plus" type="button" class="btn btn-info form-control" style="font-size: 26px; padding: 0">
+                                    + 1
                                 </button>
                             </div>
+
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-7 col-md-offset-3">
-                                <button id="btn-take" type="submit" class="btn btn-info btn-lg">
+                        <div class="text-center">
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="action" id="remove" value="remove" checked>
+                                <label class="form-check-label" for="remove">
                                     Взяти зі складу
-                                </button>
-                                <button id="btn-store" type="submit" class="btn btn-info btn-lg col-sm-offset-1">
-                                    Повернути на склад
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="action" id="add" value="add">
+                                <label class="form-check-label" for="add">
+                                    Внести на склад
+                                </label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <button id="btn-take" type="submit" class="btn btn-info btn-lg form-control-lg">
+                                    Внести в базу
                                 </button>
                             </div>
-                        </div>
+                        </div>        
+
                     </form>
                 </div>
             </div>

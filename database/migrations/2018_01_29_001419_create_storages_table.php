@@ -18,8 +18,8 @@ class CreateStoragesTable extends Migration
             $table->string('location');
             $table->string('place');
             $table->string('matchcode')->nullable();
-            $table->integer('quantity')->nullable();
-            $table->integer('min_quantity')->nullable();
+            $table->integer('quantity')->default(0);
+            $table->integer('min_quantity')->default(0);
             $table->unique(['location', 'place']);
             $table->timestamps();
         });
