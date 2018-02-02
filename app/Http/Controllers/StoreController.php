@@ -9,7 +9,7 @@ class StoreController extends Controller
 {
     public function index()
     {
-        return view('main');
+        return view('main')->with('message', null);
     }
 
     public function store(Request $request)
@@ -24,14 +24,18 @@ class StoreController extends Controller
                         ->where('matchcode', $request->input('matchcode'))
                         ->first();
         
-        if ($request->input('action') == 'add')
-            $place->quantity += $request->input('quantity');
-        else if($request->input('action') == 'remove')
-            $place->quantity -= $request->input('quantity');
+        if($place){
+            if ($request->input('action') == 'add')
+                $place->quantity += $request->input('quantity');
+            else if($request->input('action') == 'remove')
+                $place->quantity -= $request->input('quantity');
 
-        $place->update();
+            $place->update();
+        }else{
+            return redirect()->route('main')->with('message', 'Помилка внесення в базу');
+        }
 
-        return view('main')->with('message', 'Дані внесено в базу');
+        return redirect()->route('main')->with('message', 'Дані внесено в базу');
     }
     
 }
