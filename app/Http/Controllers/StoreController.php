@@ -19,7 +19,10 @@ class StoreController extends Controller
             'quantity' => 'required|integer',
         ]);
 
-        $place = Storage::where('place', $request->input('place'))->where('location', $request->input('location'))->first();
+        $place = Storage::where('place', $request->input('place'))
+                        ->where('location', $request->input('location'))
+                        ->where('matchcode', $request->input('matchcode'))
+                        ->first();
         
         if ($request->input('action') == 'add')
             $place->quantity += $request->input('quantity');

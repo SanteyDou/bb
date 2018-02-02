@@ -5,8 +5,8 @@
   <div class="container-fluid col-sm-10">
     <h2>Cклад {{ strtoupper($loc) }}</h2>
     <div class="text-right" style="margin: -42px 20px 0 0">
-      <input type="text" name="search" placeholder="матчкод" style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
-      <button class="btn btn-default">Пошук</button>
+      <!-- <input type="text" name="search" placeholder="матчкод" style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
+      <button class="btn btn-default">Пошук</button> -->
         <a class="btn btn-info" style="margin: 0 0 0 50px" href="/admin/{{ $loc }}/add">Додати місце</a>
     </div>
     

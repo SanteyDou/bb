@@ -73,8 +73,8 @@
                             
                             <label for="quantity" class="col-md-3 control-label">Кількість</label>
 
-                            <div class="col-md-3">
-                                <input id="quantity" type="text" name="quantity" class="form-control" required>
+                            <div class="col-md-2">
+                                <input id="quantity" type="text" name="quantity" class="form-control text-center font-weight-bold" value=0 style="font-size: 26px; padding: 0" required>
                                 @if ($errors->has('quantity'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('quantity') }}</strong>
@@ -83,13 +83,13 @@
                             </div>
 
                             <div class="col-md-2">
-                                <button id="minus" type="button" class="btn btn-info form-control" style="font-size: 26px; padding: 0">
+                                <button id="minus1" type="button" class="btn btn-info form-control" style="font-size: 26px; padding: 0;">
                                     - 1
                                 </button>
                             </div>
 
-                            <div class="col-md-2">
-                                <button id="plus" type="button" class="btn btn-info form-control" style="font-size: 26px; padding: 0">
+                            <div class="col-md-2 col-md-offset-1">
+                                <button id="plus1" type="button" class="btn btn-info form-control" style="font-size: 26px; padding: 0">
                                     + 1
                                 </button>
                             </div>
@@ -122,5 +122,24 @@
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('scripts')
+
+<script>
+    var  quantity = 0;
+    $('#plus1').click(function(){
+        quantity++;
+        $('#quantity').val(quantity);
+    });
+
+    $('#minus1').click(function(){
+        if(quantity > 0) {
+            quantity--;
+        }
+        $('#quantity').val(quantity);
+    })
+</script>
 
 @endsection

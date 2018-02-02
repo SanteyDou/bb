@@ -65,15 +65,3 @@
   </div>
 
 @endsection
-
-<!-- <nav class="nav flex-column">
-  <li class="nav-item dropdown-menu">
-    <h6 class="dropdown-header">Склади по локаціям</h6>
-    <a class="dropdown-item" href="#" style="padding: 5px 40px">- Тернопіль</a>
-    <a class="dropdown-item" href="#" style="padding: 5px 40px">- Чернівці</a>
-    <a class="dropdown-item" href="#" style="padding: 5px 40px">- Чортків</a>
-    <a class="dropdown-item" href="#">Залишки</a>
-    <a class="dropdown-item" href="#">Працівники</a>
-    <a class="dropdown-item" href="#">Історія</a>
-  </li>
-</nav> -->

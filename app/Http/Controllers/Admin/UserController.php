@@ -6,22 +6,23 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 
+// use Illuminate\Support\facades\Input;
+
 class UserController extends Controller
 {
   public function index()
   {
-    
     return view('admin.users', ['users' => User::orderBy('personal_id', 'asc')->get()]);
   }
 
   public function addUserForm()
-  {
-    
+  {    
     return view('admin.adduser');
   }
 
   public function addUser(Request $request)
     {
+      // dd(Input::all());
       $validatedData = $request->validate([
         'name' => 'required|string',
         'personal_id' => 'required|regex:/(^S+\d{5})/|max:6',
