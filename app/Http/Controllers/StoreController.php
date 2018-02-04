@@ -32,7 +32,7 @@ class StoreController extends Controller
 
             $place->update();
         }else{
-            return redirect()->route('main')->with('message', 'Помилка внесення в базу');
+            return redirect()->route('main')->with('error', 'Помилка внесення в базу');
         }
 
         return redirect()->route('main')->with('message', 'Дані внесено в базу');

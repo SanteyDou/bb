@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3>Прихід-розхід склад Brett-Bau</h3></div>
+                <div class="panel-heading text-center"><h3>Прихід-розхід склад Brett-Bau</h3></div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('main') }}">
@@ -118,9 +118,21 @@
 
                     </form>
 
+                    @if (session()->has('error'))
+                    <div class="text-center">
+                        <div class="col-sm-3"> </div>
+                        <div class="form-group col-sm-6" style="background: LightCoral; border-radius: 5px;">
+                            <h2>{{ session('error') }}</h2>
+                        </div>
+                    </div>
+                    @endif
+
                     @if (session()->has('message'))
                     <div class="text-center">
-                        <h2>{{ session('message') }}</h2>
+                        <div class="col-sm-3"> </div>
+                        <div class="form-group col-sm-6" style="background: LightGreen; border-radius: 5px;">
+                            <h2>{{ session('message') }}</h2>
+                        </div>
                     </div>
                     @endif
 
