@@ -6,7 +6,7 @@
 
 <h2>Користувачі</h2>
 <div class="text-right" style="margin: -42px 20px 0 0">
-  <a class="btn btn-primary" style="margin: 0 0 0 50px" href="/admin/user/add">Додати користувача</a>
+  <a class="btn btn-primary" style="margin: 0 0 0 50px" href="/admin/user/add"><i class="fas fa-user-plus"></i></a>
 </div>
 
   <div class="table-responsive">
@@ -33,8 +33,12 @@
               @endif
           </td>
           <td class="text-center">
-            <button class="btn btn-success">Редагувати</button>
-            <button class="btn btn-danger">Видалити</button>
+            <button class="btn btn-success">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn btn-danger">
+              <i class="far fa-trash-alt"></i>
+            </button>
           </td>
         </tr>
       @endforeach
