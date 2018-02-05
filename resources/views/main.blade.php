@@ -30,8 +30,8 @@
                             <div class="col-md-3">
                                 <select id="location" type="test" class="form-control" name="location" value="{{ old('location') }}" required>
                                     <option value="ter">Тернопіль</option>
-                                    <option value="che">Чернівці</option>
-                                    <option value="cho">Чортків</option>
+                                    <option value="che" disabled>Чернівці</option>
+                                    <option value="cho" disabled>Чортків</option>
                                 </select>    
                                 @if ($errors->has('location'))
                                     <span class="help-block">
@@ -105,7 +105,7 @@
                                 </label>
                                 <input class="form-check-input" type="radio" name="action" id="add" value="add" style="margin:0 0 0 50px">
                                 <label class="form-check-label" for="add">
-                                    Внести на склад
+                                    Повернути на склад
                                 </label>
                             </div>
                             <br/>

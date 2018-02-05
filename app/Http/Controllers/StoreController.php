@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Storage;
+use App\Http\Controllers\LogController;
 
 class StoreController extends Controller
 {
@@ -35,6 +36,8 @@ class StoreController extends Controller
             return redirect()->route('main')->with('error', 'Помилка внесення в базу');
         }
 
+        LogController::logStoreAction($request->input());
+        
         return redirect()->route('main')->with('message', 'Дані внесено в базу');
     }
     
