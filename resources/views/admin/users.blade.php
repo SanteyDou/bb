@@ -7,6 +7,7 @@
     <div class="text-right" style="margin: -42px 20px 0 0">
       <a class="btn btn-info" style="margin: 0 0 0 50px" href="/admin/user/add">Додати користувача</a>
     </div>
+    <h3>+ Фільтр</h3>
     
       <div class="table-responsive">
         <table class="table table-striped table-sm">

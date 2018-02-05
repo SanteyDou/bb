@@ -39,6 +39,10 @@
             
           </tbody>
         </table>
+
+        <div class="text-right">
+          {{ $logs->links() }}
+        </div>  
       </div>
     </div>
 
