@@ -18,37 +18,37 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" href="/admin/che" style="padding: 10px 50px">
+                    <a class="nav-link active" href="/admin/che" style="padding: 10px 50px" disabled>
                       Чернівці
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" href="/admin/cho" style="padding: 10px 50px">
+                    <a class="nav-link active" href="/admin/cho" style="padding: 10px 50px" disabled>
                       Чортків
                     </a>
                   </li>
                 </ul>
               <li class="nav-item">
                 <a class="nav-link" href="/admin/users">
-                  <span data-feather="file"></span>
+                  <span></span>
                   Користувачі
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
-                  <span data-feather="shopping-cart"></span>
+                  <span></span>
                   Залишки
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="users"></span>
+                <a class="nav-link" href="/admin/logs">
+                  <span></span>
                   Логи
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
-                  <span data-feather="bar-chart-2"></span>
+                  <span></span>
                   Reports
                 </a>
               </li>

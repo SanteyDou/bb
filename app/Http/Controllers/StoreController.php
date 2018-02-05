@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Storage;
-use App\Http\Controllers\LogController;
+use App\Http\Controllers\Admin\LogController;
 
 class StoreController extends Controller
 {

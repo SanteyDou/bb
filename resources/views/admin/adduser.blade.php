@@ -51,17 +51,17 @@
     </div>
 
     <div class="form-check">
-        <input class="form-check-input" type="radio" name="admin" value="0" checked>
-        <label class="form-check-label" for="admin">
+        <input class="form-check-input" type="radio" name="admin" id="user" value="0" checked>
+        <label class="form-check-label" for="user">
             Користувач
         </label>
-        <input class="form-check-input" type="radio" name="admin" value="1" style="margin: 0 0 0 50px">
+        <input class="form-check-input" type="radio" name="admin" id="admin" value="1" style="margin: 0 0 0 50px">
         <label class="form-check-label" for="admin">
             Адміністратор
         </label>
         
     </div>
-    
+   
     <div class="form-group text-right">
       <button type="submit" class="btn btn-primary">Додати</button>
     </div>
