@@ -4,17 +4,16 @@
 
   <div class="container-fluid col-sm-10">
     <h2>Min Store</h2>
-    <h3>+ Фільтр</h3>
         
       <div class="table-responsive">
-        <table class="table table-striped table-sm">
+        <table class="table table-striped table-sm text-center">
           <thead>
             <tr>
-              <th>Локація</th>
-              <th>Місце</th>
-              <th>Матч-код</th>
-              <th>Кількість</th>
-              <th>Мінімальна кількість</th>
+              <th class="text-center">Локація</th>
+              <th class="text-center">Місце</th>
+              <th class="text-center">Матч-код</th>
+              <th class="text-center">Кількість</th>
+              <th class="text-center">Мінімальна кількість</th>
             </tr>
           </thead>
           <tbody>

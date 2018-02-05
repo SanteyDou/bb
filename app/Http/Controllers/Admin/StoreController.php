@@ -30,21 +30,22 @@ class StoreController extends Controller
 
     public function addPlaceForm($loc)
     {
-        return view('admin.addplace', ['loc' => $loc]);
+        return view('admin.addplace', ['loc' => $loc, 'message' => null, 'error' => null]);
     }
 
     public function addPlace(Request $request)
     {
-        $objStorage = Storage::create(['location' => $request->input('location'),
-                        'place' => $request->input('place'),
-                        'matchcode' => $request->input('matchcode'),
-                        'min_quantity' => $request->input('min-quantity'),
+        try {
+            $objStorage = Storage::create(['location' => $request->input('location'),
+                            'place' => $request->input('place'),
+                            'matchcode' => $request->input('matchcode'),
+                            'min_quantity' => $request->input('min-quantity'),
                         ]);
-        if(!$objStorage) {
-            ehco(error);
+        } catch (\Exception $e) {
+            return view('admin.addplace', ['loc' => $request->input('location'), 'message' => '', 'error' => 'Місце не створено']);
         }
 
-        return view('admin.addplace', ['loc' => $request->input('location')]);
+        return view('admin.addplace', ['loc' => $request->input('location'), 'message' => 'Місце успішно створено', 'error' => null]);
     }
 
     public function toOrder(Request $request)

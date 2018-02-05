@@ -7,18 +7,18 @@
     <div class="text-right" style="margin: -42px 20px 0 0">
       <!-- <input type="text" name="search" placeholder="матчкод" style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
       <button class="btn btn-default">Пошук</button> -->
-        <a class="btn btn-info" style="margin: 0 0 0 50px" href="/admin/{{ $loc }}/add">Додати місце</a>
+        <a class="btn btn-primary" style="margin: 0 0 0 50px" href="/admin/{{ $loc }}/add">Додати місце</a>
     </div>
     
       <div class="table-responsive">
-        <table class="table table-striped table-sm">
+        <table class="table table-striped table-sm text-center">
           <thead>
             <tr>
-              <th>Місце</th>
-              <th>Матч-код</th>
-              <th>Кількість</th>
-              <th>Мінімальна кількість</th>
-              <th>Дія</th>
+              <th class="text-center">Місце</th>
+              <th class="text-center">Матч-код</th>
+              <th class="text-center">Кількість</th>
+              <th class="text-center">Мінімальна кількість</th>
+              <th class="text-center">Дія</th>
             </tr>
           </thead>
           <tbody>
@@ -28,7 +28,10 @@
               <td>{{ $storage->matchcode }}</td>
               <td>{{ $storage->quantity }}</td>
               <td>{{ $storage->min_quantity }}</td>
-              <td>sit</td>
+              <td>
+                <button class="btn btn-success">Редагувати</button>
+                <button class="btn btn-danger">Видалити</button>
+              </td>
             </tr>
           @endforeach
           

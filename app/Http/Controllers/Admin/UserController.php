@@ -29,18 +29,17 @@ class UserController extends Controller
         'email' => 'required',
       ]);
 
-      $objUser = User::create(['location' => $request->input('location'),
+      try {
+        $objUser = User::create(['location' => $request->input('location'),
                       'name' => $request->input('name'),
                       'email' => $request->input('email'),
                       'personal_id' => $request->input('personal_id'),
                       'is_admin' => $request->input('admin'),
                       'password' => bcrypt($request->input('personal_id')),
                       ]);
-
-      if(!$objUser) {
-          ehco(error);
+      } catch(\Exception $e) {
+        return redirect('admin/users')->with('error', "Користувача не створено");
       }
-
-      return redirect('admin/users');
+      return redirect('admin/users')->with('message', "Користувача створено");
     }
 }

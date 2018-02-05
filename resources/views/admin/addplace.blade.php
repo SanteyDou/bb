@@ -2,6 +2,8 @@
 
 @section('admin_content')
 
+
+
 <div class="container-fluid">
 
   <h2>Cклад {{ strtoupper($loc) }}</h2>
@@ -29,5 +31,22 @@
   </form>
 
 </div>
+<br/>
+@if ($error)
+  <div class="text-center">
+      <div class="col-sm-3"> </div>
+      <div class="form-group col-sm-6" style="background: LightCoral; border-radius: 5px;">
+          <h3>{{ $error }}</h3>
+      </div>
+  </div>
+@endif
+@if ($message)
+  <div class="text-center">
+      <div class="col-sm-3"> </div>
+      <div class="form-group col-sm-6" style="background: LightGreen; border-radius: 5px;">
+          <h3>{{ $message }}</h3>
+      </div>
+  </div>
+@endif
 
 @endsection

@@ -10,10 +10,9 @@
       <button class="btn btn-default">Пошук</button> 
         <a class="btn btn-info" style="margin: 0 0 0 50px" href="/admin/{{ $loc }}/add">Додати місце</a>
     </div> --}}
-    <h3>+ Фільтр</h3>
     
       <div class="table-responsive">
-        <table class="table table-striped table-sm">
+        <table class="table table-sm">
           <thead>
             <tr>
               <th>Табельний №</th>
@@ -27,7 +26,7 @@
           <tbody>
           
           @foreach ($logs as $log)
-            <tr>            
+            <tr  @if ($log->action == '+') class="bg-success" @else class="bg-danger" @endif >            
               <td>{{ $log->personal_id }}</td>
               <td>{{ $log->action }}</td>
               <td>{{ $log->place }}</td>
