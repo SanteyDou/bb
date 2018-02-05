@@ -26,9 +26,9 @@ class StoreController extends Controller
                         ->first();
         
         if($place){
-            if ($request->input('action') == 'add')
+            if ($request->input('action') == '+')
                 $place->quantity += $request->input('quantity');
-            else if($request->input('action') == 'remove')
+            else if($request->input('action') == '-')
                 $place->quantity -= $request->input('quantity');
 
             $place->update();
@@ -39,6 +39,6 @@ class StoreController extends Controller
         LogController::logStoreAction($request->input());
         
         return redirect()->route('main')->with('message', 'Дані внесено в базу');
-    }
+    }   
     
 }

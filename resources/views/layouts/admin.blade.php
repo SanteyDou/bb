@@ -18,12 +18,12 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" href="/admin/che" style="padding: 10px 50px" disabled>
+                    <a class="nav-link" href="/admin/che" style="padding: 10px 50px">
                       Чернівці
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" href="/admin/cho" style="padding: 10px 50px" disabled>
+                    <a class="nav-link" href="/admin/cho" style="padding: 10px 50px">
                       Чортків
                     </a>
                   </li>
@@ -35,7 +35,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/admin/toorder">
                   <span></span>
                   Залишки
                 </a>

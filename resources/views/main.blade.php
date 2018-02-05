@@ -99,11 +99,11 @@
                         <div class="text-center">
 
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="action" id="remove" value="remove" checked>
+                                <input class="form-check-input" type="radio" name="action" id="remove" value="-" checked>
                                 <label class="form-check-label" for="remove">
                                     Взяти зі складу
                                 </label>
-                                <input class="form-check-input" type="radio" name="action" id="add" value="add" style="margin:0 0 0 50px">
+                                <input class="form-check-input" type="radio" name="action" id="add" value="+" style="margin:0 0 0 50px">
                                 <label class="form-check-label" for="add">
                                     Повернути на склад
                                 </label>

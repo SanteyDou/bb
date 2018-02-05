@@ -46,4 +46,14 @@ class StoreController extends Controller
 
         return view('admin.addplace', ['loc' => $request->input('location')]);
     }
+
+    public function toOrder(Request $request)
+    {
+        $objStorage = Storage::whereRaw('quantity < min_quantity')
+                        ->orderBy('place', 'asc')
+                        ->get();
+            // dump($objStorage);
+
+        return view('admin.toorder', ['objStorage' => $objStorage]);
+    }
 }

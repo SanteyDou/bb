@@ -10,6 +10,7 @@
       <button class="btn btn-default">Пошук</button> 
         <a class="btn btn-info" style="margin: 0 0 0 50px" href="/admin/{{ $loc }}/add">Додати місце</a>
     </div> --}}
+    <h3>+ Фільтр</h3>
     
       <div class="table-responsive">
         <table class="table table-striped table-sm">
