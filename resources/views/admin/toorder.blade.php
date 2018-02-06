@@ -24,7 +24,7 @@
               <td>{{ $storage->location }}</td>
               <td>{{ $storage->place }}</td>
               <td>{{ $storage->matchcode }}</td>
-              <td>{{ $storage->category }}</td>
+              <td>{{ $storage->category->name }}</td>
               <td>{{ $storage->quantity }}</td>
               <td>{{ $storage->min_quantity }}</td>
             </tr>

@@ -27,7 +27,7 @@
             <tr>
               <td>{{ $storage->place }}</td>
               <td>{{ $storage->matchcode }}</td>
-              <td>{{ $storage->category }}</td>
+              <td>{{ $storage->category->name }}</td>
               <td>{{ $storage->quantity }}</td>
               <td>{{ $storage->min_quantity }}</td>
               <td class="text-center">

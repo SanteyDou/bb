@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Storage;
+use App\Category;
 
 class StoreController extends Controller
 {
@@ -30,22 +31,21 @@ class StoreController extends Controller
 
     public function addPlaceForm($loc)
     {
-        return view('admin.addplace', ['loc' => $loc, 'message' => null, 'error' => null]);
+        return view('admin.addplace', ['loc' => $loc, 'categories' => Category::orderBy('id', 'asc')->get(), 'message' => null, 'error' => null]);
     }
 
     public function addPlace(Request $request)
     {
-        try {
+        
             $objStorage = Storage::create(['location' => $request->input('location'),
                             'place' => $request->input('place'),
                             'matchcode' => $request->input('matchcode'),
+                            'category_id' => $request->input('category'),
                             'min_quantity' => $request->input('min-quantity'),
                         ]);
-        } catch (\Exception $e) {
-            return view('admin.addplace', ['loc' => $request->input('location'), 'message' => '', 'error' => 'Місце не створено']);
-        }
+       
 
-        return view('admin.addplace', ['loc' => $request->input('location'), 'message' => 'Місце успішно створено', 'error' => null]);
+        return view('admin.addplace', ['loc' => $request->input('location'), 'categories' => Category::orderBy('id', 'asc')->get(), 'message' => 'Місце успішно створено', 'error' => null]);
     }
 
     public function toOrder(Request $request)

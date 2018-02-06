@@ -15,4 +15,9 @@ class Storage extends Model
         'place', 'matchcode', 'min_quantity', 'location', 'category_id',
     ];
 
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+
 }

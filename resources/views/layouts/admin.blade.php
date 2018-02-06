@@ -29,6 +29,12 @@
                   </li>
                 </ul>
               <li class="nav-item">
+                <a class="nav-link" href="/admin/cat">
+                  <span></span>
+                  Категорії
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="/admin/users">
                   <span></span>
                   Користувачі
@@ -45,13 +51,7 @@
                   <span></span>
                   Логи
                 </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span></span>
-                  Reports
-                </a>
-              </li>
+              </li>              
             </ul>
            
           </div>

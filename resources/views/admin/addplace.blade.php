@@ -24,11 +24,9 @@
     <div class="form-group">
       <label for="category">Категорія</label>
       <select id="category" type="text" class="form-control" name="category" value="" required>
-          <option value="">1</option>
-          <option value="">2</option>
-      {{--    @foreach ()
-          <option value="">{{  }}</option>
-          @endforeach --}}
+        @foreach ($categories as $category)
+          <option value="{{ $category->id }}">{{ $category->name }}</option>
+        @endforeach --}}
       </select> 
     </div>
     <div class="form-group">
