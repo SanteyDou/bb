@@ -12,7 +12,7 @@ class Storage extends Model
      * @var array
      */
     protected $fillable = [
-        'place', 'matchcode', 'min_quantity', 'location',
+        'place', 'matchcode', 'min_quantity', 'location', 'category_id',
     ];
 
 }

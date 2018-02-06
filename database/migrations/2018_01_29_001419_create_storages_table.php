@@ -17,6 +17,7 @@ class CreateStoragesTable extends Migration
             $table->increments('id');
             $table->string('location');
             $table->string('place');
+            $table->integer('category_id');
             $table->string('matchcode')->nullable();
             $table->integer('quantity')->default(0);
             $table->integer('min_quantity')->default(0);

@@ -21,6 +21,7 @@ class LogController extends Controller
             'location' => $data['location'],
             'action' => $data['action'],
             'place' => $data['place'],
+            'category' => $data['category_id'],
             'matchcode' => $data['matchcode'],
             'quantity' => $data['quantity'],
             

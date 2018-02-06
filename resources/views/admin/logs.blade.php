@@ -19,6 +19,7 @@
               <th>Дія</th>
               <th>Місце</th>
               <th>Матч-код</th>
+              <th>Категорія</th>
               <th>Кількість</th>
               <th>Дата</th>
             </tr>
@@ -31,6 +32,7 @@
               <td>{{ $log->action }}</td>
               <td>{{ $log->place }}</td>
               <td>{{ $log->matchcode }}</td>
+              <td>{{ $log->category }}</td>
               <td>{{ $log->quantity }}</td>
               <td>{{ $log->created_at }}</td>
             </tr>

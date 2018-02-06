@@ -22,6 +22,16 @@
       <input type="text" class="form-control" name="matchcode" placeholder="XXX 125 XXX" required>
     </div>
     <div class="form-group">
+      <label for="category">Категорія</label>
+      <select id="category" type="text" class="form-control" name="category" value="" required>
+          <option value="">1</option>
+          <option value="">2</option>
+      {{--    @foreach ()
+          <option value="">{{  }}</option>
+          @endforeach --}}
+      </select> 
+    </div>
+    <div class="form-group">
       <label for="min-quantity">Мінімальна кількість</label>
       <input type="text" class="form-control" name="min-quantity" placeholder="123">
     </div>

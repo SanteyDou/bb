@@ -28,7 +28,7 @@
                             <label for="location" class="col-md-2 control-label">Локація</label>
 
                             <div class="col-md-3">
-                                <select id="location" type="test" class="form-control" name="location" value="{{ old('location') }}" required>
+                                <select id="location" type="text" class="form-control" name="location" value="{{ old('location') }}" required>
                                     <option value="ter">Тернопіль</option>
                                     <option value="che" disabled>Чернівці</option>
                                     <option value="cho" disabled>Чортків</option>
@@ -56,6 +56,25 @@
                             </div>
                         </div>
                         <br/>
+                        <div class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
+                        <label for="location" class="col-md-3 control-label">Категорія</label>
+                            <div class="col-md-7">
+                                <select id="category" type="text" class="form-control" name="category" value="" required>
+                                    <option value="">1</option>
+                                    <option value="">2</option>
+                                {{--    @foreach ()
+                                    <option value="">{{  }}</option>
+                                    @endforeach --}}
+                                </select>    
+                                @if ($errors->has('category'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('category') }}</strong>
+                                    </span>
+                                @endif
+
+                            </div>
+                        </div>
+                        <br/> 
                         <div class="form-group{{ $errors->has('matchcode') ? ' has-error' : '' }}">
                             <label for="matchcode" class="col-md-3 control-label">Матч код</label>
 
@@ -74,7 +93,7 @@
                             <label for="quantity" class="col-md-3 control-label">Кількість</label>
 
                             <div class="col-md-2">
-                                <input id="quantity" type="text" name="quantity" class="form-control text-center font-weight-bold" value=0 style="font-size: 26px; padding: 0" required>
+                                <input id="quantity" type="text" name="quantity" class="form-control text-center font-weight-bold" value="" style="font-size: 26px; padding: 0" required>
                                 @if ($errors->has('quantity'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('quantity') }}</strong>

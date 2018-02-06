@@ -12,6 +12,7 @@
               <th class="text-center">Локація</th>
               <th class="text-center">Місце</th>
               <th class="text-center">Матч-код</th>
+              <th class="text-center">Категорія</th>
               <th class="text-center">Кількість</th>
               <th class="text-center">Мінімальна кількість</th>
             </tr>
@@ -23,6 +24,7 @@
               <td>{{ $storage->location }}</td>
               <td>{{ $storage->place }}</td>
               <td>{{ $storage->matchcode }}</td>
+              <td>{{ $storage->category }}</td>
               <td>{{ $storage->quantity }}</td>
               <td>{{ $storage->min_quantity }}</td>
             </tr>

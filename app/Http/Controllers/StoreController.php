@@ -23,6 +23,7 @@ class StoreController extends Controller
         $place = Storage::where('place', $request->input('place'))
                         ->where('location', $request->input('location'))
                         ->where('matchcode', $request->input('matchcode'))
+                        ->where('category_id', $request->input('category_id'))
                         ->first();
         
         if($place){
