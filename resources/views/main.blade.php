@@ -28,10 +28,10 @@
                             <label for="location" class="col-md-2 control-label">Локація</label>
 
                             <div class="col-md-3">
-                                <select id="location" type="text" class="form-control" name="location" value="{{ old('location') }}" required>
+                                <select id="location" type="text" class="form-control" name="location" value="" required>
                                     <option value="ter">Тернопіль</option>
-                                    <option value="che" disabled>Чернівці</option>
-                                    <option value="cho" disabled>Чортків</option>
+                                    <option value="che">Чернівці</option>
+                                    <option value="cho">Чортків</option>
                                 </select>    
                                 @if ($errors->has('location'))
                                     <span class="help-block">
@@ -59,12 +59,10 @@
                         <div class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
                         <label for="location" class="col-md-3 control-label">Категорія</label>
                             <div class="col-md-7">
-                                <select id="category" type="text" class="form-control" name="category" value="" required>
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                {{--    @foreach ()
-                                    <option value="">{{  }}</option>
-                                    @endforeach --}}
+                                <select id="category_id" type="text" class="form-control" name="category_id" value="" required>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
                                 </select>    
                                 @if ($errors->has('category'))
                                     <span class="help-block">
@@ -91,8 +89,12 @@
                         <div class="form-group{{ $errors->has('quantity') ? ' has-error' : '' }}">
                             
                             <label for="quantity" class="col-md-3 control-label">Кількість</label>
-
+                            
                             <div class="col-md-2">
+                                <input id="quantity-aviable" type="text" name="quantity-aviable" class="form-control text-center" value="" style="font-size: 26px; padding: 0" disabled>
+                            </div>                           
+
+                            <div class="col-md-3">
                                 <input id="quantity" type="text" name="quantity" class="form-control text-center font-weight-bold" value="" style="font-size: 26px; padding: 0" required>
                                 @if ($errors->has('quantity'))
                                     <span class="help-block">
@@ -101,13 +103,13 @@
                                 @endif
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                 <button id="minus1" type="button" class="btn btn-info form-control" style="font-size: 26px; padding: 0;">
                                     - 1
                                 </button>
                             </div>
 
-                            <div class="col-md-2 col-md-offset-1">
+                            <div class="col-md-1">
                                 <button id="plus1" type="button" class="btn btn-info form-control" style="font-size: 26px; padding: 0">
                                     + 1
                                 </button>
@@ -178,6 +180,59 @@
         }
         $('#quantity').val(quantity);
     })
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $("#personal_id").keypress(function(e) {
+
+        if(e.which == 13) {
+            var personal_id = $("input[name=personal_id]").val();
+            
+            $.ajax({
+                type:'GET',
+
+                url:'/ajaxRequestUser',
+
+                data:{personal_id:personal_id},
+
+                success:function(data){
+                    $("select[name=location]").val(data.location);
+                }
+
+            });
+
+        }
+
+    });
+
+    $("#place").keypress(function(e) {
+        if(e.which == 13) {
+            var place = $("input[name=place]").val();
+            
+        $.ajax({
+            type:'GET',
+
+            url:'/ajaxRequestPlace',
+
+            data:{place:place},
+
+            success:function(data){
+                $("select[name=category_id]").val(data.category_id);
+                $("input[name=matchcode]").val(data.matchcode);
+                $("input[name=quantity-aviable]").val(data.quantity);
+
+                console.log(data);
+            }
+        });
+
+        }
+
+    });
+
 </script>
 
 @endsection

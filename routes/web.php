@@ -14,6 +14,10 @@
 Route::get('/', 'StoreController@index')->name('main');
 Route::post('/', 'StoreController@store');
 
+Route::get('/ajaxRequestUser', 'Admin\UserController@ajaxRequest');
+Route::get('/ajaxRequestPlace', 'StoreController@ajaxRequest');
+
+
 Auth::routes();
 
 Route::prefix('admin')->group(function () {

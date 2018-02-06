@@ -42,7 +42,7 @@
 <br/>
 @if ($error)
   <div class="text-center">
-      <div class="col-sm-3"> </div>
+      <div class="col-sm-2"> </div>
       <div class="form-group col-sm-6" style="background: LightCoral; border-radius: 5px;">
           <h3>{{ $error }}</h3>
       </div>
@@ -50,7 +50,7 @@
 @endif
 @if ($message)
   <div class="text-center">
-      <div class="col-sm-3"> </div>
+      <div class="col-sm-2"> </div>
       <div class="form-group col-sm-6" style="background: LightGreen; border-radius: 5px;">
           <h3>{{ $message }}</h3>
       </div>

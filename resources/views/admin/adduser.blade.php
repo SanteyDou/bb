@@ -31,7 +31,7 @@
 
     <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
         <label for="email">e-mail</label>
-            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="ivan.ivanenko@sebn.com" required>
+            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="ivan.ivanenko@sebn.com">
 
             @if ($errors->has('email'))
                 <span class="help-block">

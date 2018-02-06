@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Storage;
+use App\Category;
 use App\Http\Controllers\Admin\LogController;
 
 class StoreController extends Controller
 {
     public function index()
     {
-        return view('main')->with('message', null);
+        return view('main')->with(['message' => null, 'categories' => Category::all()]);
     }
 
     public function store(Request $request)
@@ -25,7 +26,7 @@ class StoreController extends Controller
                         ->where('matchcode', $request->input('matchcode'))
                         ->where('category_id', $request->input('category_id'))
                         ->first();
-        
+        // dd($request);
         if($place){
             if ($request->input('action') == '+')
                 $place->quantity += $request->input('quantity');
@@ -40,6 +41,15 @@ class StoreController extends Controller
         LogController::logStoreAction($request->input());
         
         return redirect()->route('main')->with('message', 'Дані внесено в базу');
-    }   
+    }
+
+    public function ajaxRequest()
+    {
+  
+      $place = Storage::where('place', request()->place)->first();
+  
+      return response()->json(['category_id' => $place->category_id, 'category' => $place->category->name, 'matchcode' => $place->matchcode, 'quantity' => $place->quantity]);
+  
+    }
     
 }

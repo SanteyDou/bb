@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Log;
+use App\Category;
 
 class LogController extends Controller
 {    
@@ -16,12 +17,15 @@ class LogController extends Controller
 
     static public function logStoreAction($data)
     {
+        $category = Category::find($data['category_id'])->name;
+        // dd($category);
+
         $log = Log::create([
             'personal_id' => $data['personal_id'],
             'location' => $data['location'],
             'action' => $data['action'],
             'place' => $data['place'],
-            'category' => $data['category_id'],
+            'category' => $category,
             'matchcode' => $data['matchcode'],
             'quantity' => $data['quantity'],
             

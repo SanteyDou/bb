@@ -21,6 +21,7 @@ class CreateLogsTable extends Migration
             $table->integer('quantity');
             $table->string('place', 15);
             $table->string('matchcode', 20);
+            $table->string('category', 55);
             $table->timestamps();
         });
     }
