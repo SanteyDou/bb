@@ -35,9 +35,12 @@ Route::prefix('admin')->group(function () {
     Route::get('/cat/add', 'Admin\CategoryController@addCategoryForm')->middleware(['auth', 'admin'])->name('admin.catAddForm');
     Route::post('/cat/add', 'Admin\CategoryController@addCategory')->middleware(['auth', 'admin'])->name('admin.catAdd');
 
-    Route::get('/{loc?}', 'Admin\StoreController@storeByLocation')->middleware(['auth', 'admin'])->name('admin.store');
-    Route::get('/{loc?}/add', 'Admin\StoreController@addPlaceForm')->middleware(['auth', 'admin'])->name('admin.addForm');
-    Route::post('/{loc?}/add', 'Admin\StoreController@addPlace')->middleware(['auth', 'admin'])->name('admin.add');
+    Route::get('/{loc}', 'Admin\StoreController@storeByLocation')->middleware(['auth', 'admin'])->name('admin.store');
+    Route::get('/{loc}/add', 'Admin\StoreController@addPlaceForm')->middleware(['auth', 'admin'])->name('admin.addForm');
+    Route::post('/{loc}/add', 'Admin\StoreController@addPlace')->middleware(['auth', 'admin'])->name('admin.add');
+    Route::get('/{loc}/edit/{place}', 'Admin\StoreController@editPlaceForm')->middleware(['auth', 'admin'])->name('admin.editForm');
+    Route::post('/{loc}/edit/{place}', 'Admin\StoreController@editPlace')->middleware(['auth', 'admin'])->name('admin.edit');
+
     
     
 });

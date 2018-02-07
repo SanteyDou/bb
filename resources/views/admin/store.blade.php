@@ -31,12 +31,9 @@
               <td>{{ $storage->quantity }}</td>
               <td>{{ $storage->min_quantity }}</td>
               <td class="text-center">
-                <button class="btn btn-success">
+                <a class="btn btn-success" href="/admin/{{ $loc }}/edit/{{ $storage->place }}">
                   <i class="fas fa-edit"></i>
-                </button>
-                <button class="btn btn-danger">
-                  <i class="far fa-trash-alt"></i>
-                </button>
+                </a>
               </td>
             </tr>
           @endforeach

@@ -38,14 +38,7 @@ class StoreController extends Controller
     public function addPlace(Request $request)
     {
 
-        $objStorage = Storage::create(['location' => $request->input('location'),
-                        'place' => $request->input('place'),
-                        'matchcode' => $request->input('matchcode'),
-                        'quantity' => $request->input('quantity'),                        
-                        'category_id' => $request->input('category_id'),
-                        'min_quantity' => $request->input('min-quantity'),
-
-                    ]);
+        $objStorage = Storage::create($request->input());
 
         if ($request->input('quantity')){
             LogController::logStoreAction($request->input());
@@ -62,5 +55,25 @@ class StoreController extends Controller
             // dump($objStorage);
 
         return view('admin.toorder', ['objStorage' => $objStorage]);
+    }
+
+    public function editPlaceForm($loc, $place){
+
+        return view('admin.editplace', ['loc' => $loc, 
+                                       'storage' => Storage::where(['place' => $place, 'location' => $loc])->first(),
+                                       'categories' => Category::orderBy('id', 'asc')->get(), 
+                                       'message' => null, 
+                                       'error' => null]);
+    }
+
+    public function editPlace(Request $request){
+        // dd($request);
+        Storage::where(['place' => $request->place, 'location' => $request->location])
+            ->first()
+            ->update(['matchcode' => $request->matchcode,
+                      'category_id' => $request->category_id,
+                      'min_quantity' => $request->min_quantity]);
+    
+        return redirect()->route('admin.store', ['loc' => $request->location]);
     }
 }
