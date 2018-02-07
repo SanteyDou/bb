@@ -35,8 +35,8 @@
       <input type="number" min="0" class="form-control" name="quantity" placeholder="123">
     </div>
     <div class="form-group">
-      <label for="min-quantity">Мінімальна кількість</label>
-      <input type="text" class="form-control" name="min-quantity" placeholder="123">
+      <label for="min_quantity">Мінімальна кількість</label>
+      <input type="text" class="form-control" name="min_quantity" placeholder="123">
     </div>
     <div class="form-group text-right">
       <button type="submit" class="btn btn-primary">Додати</button>

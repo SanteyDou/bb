@@ -13,7 +13,7 @@ class StoreController extends Controller
 {
     public function index()
     {
-        return view('admin.index');
+        return view('admin.index', ['message' => null, 'error' => null]);
     }
 
     public function storeByLocation($loc)
@@ -68,9 +68,14 @@ class StoreController extends Controller
 
     public function editPlace(Request $request){
         // dd($request);
-        Storage::where(['place' => $request->place, 'location' => $request->location])
-            ->first()
-            ->update(['matchcode' => $request->matchcode,
+
+        $place = Storage::where(['place' => $request->place, 'location' => $request->location])->first();
+
+        if($place->quantity != 0){
+            return view('admin.index', ['message' => null, 'error' => 'Для редагування місце повинно бути порожнім']);
+        }
+
+        $place->update(['matchcode' => $request->matchcode,
                       'category_id' => $request->category_id,
                       'min_quantity' => $request->min_quantity]);
     

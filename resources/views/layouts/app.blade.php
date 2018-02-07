@@ -44,7 +44,7 @@
                         <!-- Authentication Links -->
                         @guest
                             <li><a href="{{ route('login') }}">Вхід</a></li>
-                            <li><a href="{{ route('register') }}">Реєстрація</a></li>
+                            {{-- <li><a href="{{ route('register') }}">Реєстрація</a></li> --}}
                         @else
                             @if ( Auth::user()->is_admin )
                                 <li><a href="{{ route('admin') }}" >Адмінка</a></li>

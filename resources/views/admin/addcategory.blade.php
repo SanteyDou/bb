@@ -11,7 +11,7 @@
 
     <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
       <label for="place">Назва категорії</label>
-      <input type="text" class="form-control" value="{{ old('name') }}" name="name" required>
+      <input type="text" class="form-control" value="{{ old('name') }}" name="name" required autofocus>
       @if ($errors->has('name'))
           <span class="help-block">
               <strong>{{ $errors->first('name') }}</strong>

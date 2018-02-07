@@ -30,8 +30,8 @@
                             <div class="col-md-3">
                                 <select id="location" type="text" class="form-control" name="location" value="" required>
                                     <option value="ter">Тернопіль</option>
-                                    <option value="che">Чернівці</option>
-                                    <option value="cho">Чортків</option>
+                                    <option value="che" disabled>Чернівці</option>
+                                    <option value="cho" disabled>Чортків</option>
                                 </select>    
                                 @if ($errors->has('location'))
                                     <span class="help-block">
