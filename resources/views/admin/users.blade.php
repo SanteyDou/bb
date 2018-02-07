@@ -33,10 +33,10 @@
               @endif
           </td>
           <td class="text-center">
-            <button class="btn btn-success">
+            <button class="btn btn-success" disabled>
               <i class="fas fa-edit"></i>
             </button>
-            <button class="btn btn-danger">
+            <button class="btn btn-danger" disabled>
               <i class="far fa-trash-alt"></i>
             </button>
           </td>

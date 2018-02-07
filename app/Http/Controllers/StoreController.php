@@ -27,6 +27,11 @@ class StoreController extends Controller
                         ->where('category_id', $request->input('category_id'))
                         ->first();
         // dd($request);
+        
+        if($request->input('action') == '-' && $place->quantity < $request->input('quantity')){
+            return redirect()->route('main')->with('error', 'Немає такої кількості матеріалу на даному місці');
+        }
+
         if($place){
             if ($request->input('action') == '+')
                 $place->quantity += $request->input('quantity');
@@ -35,7 +40,7 @@ class StoreController extends Controller
 
             $place->update();
         }else{
-            return redirect()->route('main')->with('error', 'Помилка внесення в базу');
+            return redirect()->route('main')->with('error', 'Помилка внесення в базу')->withInput();
         }
 
         LogController::logStoreAction($request->input());
@@ -43,12 +48,23 @@ class StoreController extends Controller
         return redirect()->route('main')->with('message', 'Дані внесено в базу');
     }
 
-    public function ajaxRequest()
+    public function ajaxRequestByPlace()
     {
   
       $place = Storage::where('place', request()->place)->first();
   
       return response()->json(['category_id' => $place->category_id, 'category' => $place->category->name, 'matchcode' => $place->matchcode, 'quantity' => $place->quantity]);
+  
+    }
+
+    public function ajaxRequestByMatchcode()
+    {
+  
+    //   $places = Storage::where('matchcode', request()->matchcode)->where('category_id',  request()->category_id)->get()->toJson();
+      $place = Storage::where('matchcode', request()->matchcode)->where('category_id',  request()->category_id)->where('quantity', '>', 0)->first();
+
+    //   return response()->json($places);
+      return response()->json(['place' => $place->place, 'quantity' => $place->quantity]);
   
     }
     

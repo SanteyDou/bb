@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <br/>
-                        <div class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
+                        <div id="place" class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
                             <label for="place" class="col-md-3 control-label">Місце</label>
 
                             <div class="col-md-7">
@@ -56,7 +56,7 @@
                             </div>
                         </div>
                         <br/>
-                        <div class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
+                        <div id="category" class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
                         <label for="location" class="col-md-3 control-label">Категорія</label>
                             <div class="col-md-7">
                                 <select id="category_id" type="text" class="form-control" name="category_id" value="" required>
@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         <br/> 
-                        <div class="form-group{{ $errors->has('matchcode') ? ' has-error' : '' }}">
+                        <div id="matchcode" class="form-group{{ $errors->has('matchcode') ? ' has-error' : '' }}">
                             <label for="matchcode" class="col-md-3 control-label">Матч код</label>
 
                             <div class="col-md-5">
@@ -91,7 +91,7 @@
                             <label for="quantity" class="col-md-3 control-label" style="margin: 0 -10px 0 0">Кількість</label>
                             
                             <div class="col-md-2" style="margin: 0 -10px 0 0">
-                                <input id="quantity-aviable" type="text" name="quantity-aviable" class="form-control text-center" value="" style="font-size: 26px; padding: 0" disabled>
+                                <input id="quantity-aviable" type="text" name="quantity-aviable" class="form-control text-center" value="{{ old('quantity') }}" style="font-size: 26px; padding: 0" disabled>
                             </div>                           
 
                             <div class="col-md-2" style="margin: 0 -10px 0 0">
@@ -219,25 +219,58 @@
         if(e.which == 13) {
             var place = $("input[name=place]").val();
             
+            $.ajax({
+                type:'GET',
+
+                url:'/ajaxRequestByPlace',
+
+                data:{place:place},
+
+                success:function(data){
+                    $("select[name=category_id]").val(data.category_id);
+                    $("input[name=matchcode]").val(data.matchcode);
+                    $("input[name=quantity-aviable]").val(data.quantity);
+                    $('#place').removeClass('has-error');
+                },
+
+                error:function(data){
+                    $('#place').addClass('has-error');
+                }
+            });
+
+        }
+
+    });
+
+    $("#search").on('click', function(e) {
+        var matchcode = $("input[name=matchcode]").val();
+        var category_id = $("select[name=category_id]").val();
+
         $.ajax({
             type:'GET',
 
-            url:'/ajaxRequestPlace',
+            url:'/ajaxRequestByMatchcode',
 
-            data:{place:place},
+            data:{matchcode:matchcode, category_id:category_id},
 
             success:function(data){
-                $("select[name=category_id]").val(data.category_id);
-                $("input[name=matchcode]").val(data.matchcode);
+                $("input[name=place]").val(data.place);
                 $("input[name=quantity-aviable]").val(data.quantity);
 
-                console.log(data);
+                $('#matchcode').removeClass('has-error');
+                $('#category').removeClass('has-error');
+
+            },
+
+            error:function(data){
+                $("input[name=matchcode]").val('');
+                $('#matchcode').addClass('has-error');
+                $('#category').addClass('has-error');
+
+
             }
 
-
         });
-
-        }
 
     });
 

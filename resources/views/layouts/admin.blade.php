@@ -43,7 +43,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/admin/toorder">
                   <span></span>
-                  Залишки
+                  Дозамовити
                 </a>
               </li>
               <li class="nav-item">
