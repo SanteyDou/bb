@@ -23,12 +23,10 @@
       <input type="text" class="form-control" name="matchcode" value="{{ $storage->matchcode }}" required>
     </div>
     <div class="form-group">
-      <label for="category">Категорія</label>
-      <select id="category_id" type="text" class="form-control" name="category_id" required>
+      <label for="category_id">Категорія</label>
+      <select id="category_id" type="text" class="form-control" name="category_id" value="$storage->category_id" required>
         @foreach ($categories as $category)
-          <option value="{{ $category->id }}" @if ($category->id == $storage->category_id) 
-            selected
-          @endif>{{ $category->name }}</option>
+          <option value="{{ $category->id }}">{{ $category->name }}</option>
         @endforeach --}}
       </select> 
     </div>

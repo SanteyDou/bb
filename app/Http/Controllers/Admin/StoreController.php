@@ -67,12 +67,13 @@ class StoreController extends Controller
     }
 
     public function editPlace(Request $request){
-        // dd($request);
 
         $place = Storage::where(['place' => $request->place, 'location' => $request->location])->first();
 
-        if($place->quantity != 0){
+        if($place->matchcode != $request->matchcode && $place->quantity != 0){
             return view('admin.index', ['message' => null, 'error' => 'Для редагування місце повинно бути порожнім']);
+        }elseif ($place->category_id != $request->category_id){
+            return view('admin.index', ['message' => null, 'error' => 'Для редагування категорії місце повинно бути порожнім']);
         }
 
         $place->update(['matchcode' => $request->matchcode,

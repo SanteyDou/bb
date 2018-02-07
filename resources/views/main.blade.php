@@ -12,7 +12,7 @@
                     <form class="form-horizontal" method="POST" action="{{ route('main') }}">
                         {{ csrf_field() }}
                         <br/>
-                        <div class="form-group{{ $errors->has('personal_id') ? ' has-error' : '' }}">
+                        <div id="personal_id" class="form-group{{ $errors->has('personal_id') ? ' has-error' : '' }}">
                             <label for="personal_id" class="col-md-3 control-label">Табельний номер</label>
 
                             <div class="col-md-2">
@@ -201,6 +201,12 @@
 
                 success:function(data){
                     $("select[name=location]").val(data.location);
+                    $('#personal_id').removeClass('has-error');
+                },
+
+                error:function(data){
+                    $("input[name=personal_id]").val('');
+                    $('#personal_id').addClass('has-error');
                 }
 
             });
@@ -227,6 +233,8 @@
 
                 console.log(data);
             }
+
+
         });
 
         }
