@@ -27,8 +27,7 @@ class LogController extends Controller
             'place' => $data['place'],
             'category' => $category,
             'matchcode' => $data['matchcode'],
-            'quantity' => $data['quantity'],
-            
+            'quantity' => $data['quantity'],            
         ]);
 
         //TODO: error handling

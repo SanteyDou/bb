@@ -88,13 +88,13 @@
                         <br/>
                         <div class="form-group{{ $errors->has('quantity') ? ' has-error' : '' }}">
                             
-                            <label for="quantity" class="col-md-3 control-label">Кількість</label>
+                            <label for="quantity" class="col-md-3 control-label" style="margin: 0 -10px 0 0">Кількість</label>
                             
-                            <div class="col-md-2">
+                            <div class="col-md-2" style="margin: 0 -10px 0 0">
                                 <input id="quantity-aviable" type="text" name="quantity-aviable" class="form-control text-center" value="" style="font-size: 26px; padding: 0" disabled>
                             </div>                           
 
-                            <div class="col-md-3">
+                            <div class="col-md-2" style="margin: 0 -10px 0 0">
                                 <input id="quantity" type="text" name="quantity" class="form-control text-center font-weight-bold" value="" style="font-size: 26px; padding: 0" required>
                                 @if ($errors->has('quantity'))
                                     <span class="help-block">
@@ -103,13 +103,13 @@
                                 @endif
                             </div>
 
-                            <div class="col-md-1">
+                            <div class="col-md-2" style="margin: 0 -10px 0 0">
                                 <button id="minus1" type="button" class="btn btn-info form-control" style="font-size: 26px; padding: 0;">
                                     - 1
                                 </button>
                             </div>
 
-                            <div class="col-md-1">
+                            <div class="col-md-2" style="margin: 0 -10px 0 0">
                                 <button id="plus1" type="button" class="btn btn-info form-control" style="font-size: 26px; padding: 0">
                                     + 1
                                 </button>

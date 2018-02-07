@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Storage;
 use App\Category;
+use App\Http\Controllers\Admin\LogController;
 
 class StoreController extends Controller
 {
@@ -36,14 +37,19 @@ class StoreController extends Controller
 
     public function addPlace(Request $request)
     {
-        
-            $objStorage = Storage::create(['location' => $request->input('location'),
-                            'place' => $request->input('place'),
-                            'matchcode' => $request->input('matchcode'),
-                            'category_id' => $request->input('category'),
-                            'min_quantity' => $request->input('min-quantity'),
-                        ]);
-       
+
+        $objStorage = Storage::create(['location' => $request->input('location'),
+                        'place' => $request->input('place'),
+                        'matchcode' => $request->input('matchcode'),
+                        'quantity' => $request->input('quantity'),                        
+                        'category_id' => $request->input('category_id'),
+                        'min_quantity' => $request->input('min-quantity'),
+
+                    ]);
+
+        if ($request->input('quantity')){
+            LogController::logStoreAction($request->input());
+        }   
 
         return view('admin.addplace', ['loc' => $request->input('location'), 'categories' => Category::orderBy('id', 'asc')->get(), 'message' => 'Місце успішно створено', 'error' => null]);
     }

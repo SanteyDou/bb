@@ -12,7 +12,8 @@
     {{ csrf_field() }}
 
     <input type="hidden" name="location" value="{{ $loc }}">
-
+    <input type="hidden" name="personal_id" value="{{ Auth::user()->personal_id }}">
+    <input type="hidden" name="action" value="+">
     <div class="form-group">
       <label for="place">Місце на складі</label>
       <input type="text" class="form-control" name="place" placeholder="X01-1" required>
@@ -23,11 +24,15 @@
     </div>
     <div class="form-group">
       <label for="category">Категорія</label>
-      <select id="category" type="text" class="form-control" name="category" value="" required>
+      <select id="category_id" type="text" class="form-control" name="category_id" value="" required>
         @foreach ($categories as $category)
           <option value="{{ $category->id }}">{{ $category->name }}</option>
         @endforeach --}}
       </select> 
+    </div>
+    <div class="form-group">
+      <label for="quantity">Кількість</label>
+      <input type="number" min="0" class="form-control" name="quantity" placeholder="123">
     </div>
     <div class="form-group">
       <label for="min-quantity">Мінімальна кількість</label>
