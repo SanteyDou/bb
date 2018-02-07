@@ -34,6 +34,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/cat', 'Admin\CategoryController@index')->middleware(['auth', 'admin'])->name('admin.cat');
     Route::get('/cat/add', 'Admin\CategoryController@addCategoryForm')->middleware(['auth', 'admin'])->name('admin.catAddForm');
     Route::post('/cat/add', 'Admin\CategoryController@addCategory')->middleware(['auth', 'admin'])->name('admin.catAdd');
+    Route::get('/cat/edit/{id}', 'Admin\CategoryController@editCategoryForm')->middleware(['auth', 'admin'])->name('admin.catEditForm');
+    Route::post('/cat/edit/{id}', 'Admin\CategoryController@editCategory')->middleware(['auth', 'admin'])->name('admin.catEdit');
 
     Route::get('/{loc}', 'Admin\StoreController@storeByLocation')->middleware(['auth', 'admin'])->name('admin.store');
     Route::get('/{loc}/add', 'Admin\StoreController@addPlaceForm')->middleware(['auth', 'admin'])->name('admin.addForm');

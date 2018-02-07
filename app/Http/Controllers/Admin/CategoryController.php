@@ -34,4 +34,25 @@ class CategoryController extends Controller
       }
       return redirect('admin/cat')->with('message', "Категорію створено");
     }
+
+    public function editCategoryForm($id)
+    {
+
+      $category = Category::where('id', $id)->first();
+
+      return view('admin.editcategory', ['category' => $category]);      
+    }
+
+    public function editCategory(Request $request)
+    {
+
+      try {
+        $category = Category::where('id', $request->id)->first();
+        $category->update(['name' => $request->name]);
+      } catch(\Exception $e) {
+        return redirect('admin/cat')->with('error', "Категорію не оновлено");
+      }
+      return redirect('admin/cat')->with('message', "Категорію оновлено");      
+    }
+    
 }

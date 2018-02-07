@@ -25,9 +25,9 @@
           <td>{{ $category->name }}</td>
          
           <td class="text-center">
-            <button class="btn btn-success">
+            <a class="btn btn-success" href="/admin/cat/edit/{{ $category->id }}">
               <i class="fas fa-edit"></i>
-            </button>
+            </a>
           </td>
         </tr>
       @endforeach
