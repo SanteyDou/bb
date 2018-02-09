@@ -22,7 +22,7 @@ class StoreController extends Controller
         if (in_array($loc, ['ter', 'che', 'cho'])) {
             $objStorage = Storage::where('location', $loc)
                         ->orderBy('place', 'asc')
-                        ->get();
+                        ->paginate(15);
             // dump($objStorage);
             return view('admin.store', ['loc' => $loc, 'objStorage' => $objStorage]);
         };

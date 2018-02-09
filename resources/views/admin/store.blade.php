@@ -37,10 +37,13 @@
               </td>
             </tr>
           @endforeach
-          
-            
+                    
           </tbody>
         </table>
+
+        <div class="text-right">
+            {{ $objStorage->links() }}
+        </div> 
       </div>
     </div>
 

@@ -10,9 +10,7 @@ class LogController extends Controller
 {    
     public function logs()
     {
-
-        return view('admin.logs', ['logs' => Log::orderBy('created_at', 'asc')->paginate(10)]);
-
+        return view('admin.logs', ['logs' => Log::orderBy('created_at', 'asc')->paginate(15)]);
     }
 
     static public function logStoreAction($data)
