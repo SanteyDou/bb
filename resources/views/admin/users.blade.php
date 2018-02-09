@@ -33,12 +33,12 @@
               @endif
           </td>
           <td class="text-center">
-            <button class="btn btn-success" disabled>
+            <a class="btn btn-success" href="/admin/user/edit/{{ $user->personal_id }}">
               <i class="fas fa-edit"></i>
-            </button>
-            <button class="btn btn-danger" disabled>
+            </a>
+            <a class="btn btn-danger" href="/admin/user/delete/{{ $user->personal_id }}" disabled>
               <i class="far fa-trash-alt"></i>
-            </button>
+            </a>
           </td>
         </tr>
       @endforeach

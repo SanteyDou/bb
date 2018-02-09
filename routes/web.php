@@ -27,6 +27,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/users', 'Admin\UserController@index')->middleware(['auth', 'admin'])->name('admin.users');
     Route::get('/user/add', 'Admin\UserController@addUserForm')->middleware(['auth', 'admin'])->name('admin.userAddForm');
     Route::post('/user/add', 'Admin\UserController@addUser')->middleware(['auth', 'admin'])->name('admin.userAdd');
+    Route::get('/user/edit/{personal_id}', 'Admin\UserController@editUserForm')->middleware(['auth', 'admin'])->name('admin.userEditForm');
+    Route::post('/user/edit/{personal_id}', 'Admin\UserController@editUser')->middleware(['auth', 'admin'])->name('admin.userEdit');
     
     Route::get('/logs', 'Admin\LogController@logs')->middleware(['auth', 'admin'])->name('admin.logs');
 
