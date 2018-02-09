@@ -69,6 +69,17 @@ class UserController extends Controller
     return redirect('admin/users')->with('message', "Дані користувача змінено");
   }
 
+  public function deleteUser($personal_id)
+  {        
+    $user = User::where('personal_id', $personal_id)->first();
+    
+    if($user) {
+      $user->delete();
+    }
+
+    return redirect('admin/users')->with('message', "Користувача видалено");
+  }
+
   public function ajaxRequest()
   {
 

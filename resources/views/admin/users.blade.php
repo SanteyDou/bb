@@ -36,7 +36,7 @@
             <a class="btn btn-success" href="/admin/user/edit/{{ $user->personal_id }}">
               <i class="fas fa-edit"></i>
             </a>
-            <a class="btn btn-danger" href="/admin/user/delete/{{ $user->personal_id }}" disabled>
+            <a class="btn btn-danger delete" href="/admin/user/delete/{{ $user->personal_id }}">
               <i class="far fa-trash-alt"></i>
             </a>
           </td>
@@ -67,4 +67,17 @@
 
 </div>
 
+@endsection
+
+@section('scripts')
+  <script>
+    var elems = document.getElementsByClassName('delete');
+    var confirmIt = function (e) {
+        if (!confirm('Ви справді бажаєте видалити цього користувача?')) e.preventDefault();
+    };
+    for (var i = 0, l = elems.length; i < l; i++) {
+        elems[i].addEventListener('click', confirmIt, false);
+    }
+
+  </script>
 @endsection

@@ -29,6 +29,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/user/add', 'Admin\UserController@addUser')->middleware(['auth', 'admin'])->name('admin.userAdd');
     Route::get('/user/edit/{personal_id}', 'Admin\UserController@editUserForm')->middleware(['auth', 'admin'])->name('admin.userEditForm');
     Route::post('/user/edit/{personal_id}', 'Admin\UserController@editUser')->middleware(['auth', 'admin'])->name('admin.userEdit');
+    Route::get('/user/delete/{personal_id}', 'Admin\UserController@deleteUser')->middleware(['auth', 'admin'])->name('admin.userDelete');
     
     Route::get('/logs', 'Admin\LogController@logs')->middleware(['auth', 'admin'])->name('admin.logs');
 
