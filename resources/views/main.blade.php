@@ -28,7 +28,7 @@
                             <label for="location" class="col-md-2 control-label">Локація</label>
 
                             <div class="col-md-3">
-                                <select id="location" type="text" class="form-control" name="location" value="" required>
+                                <select id="location" type="text" class="form-control" name="location" value="{{ old('location') }}" required>
                                     <option value="ter">Тернопіль</option>
                                     <option value="che" disabled>Чернівці</option>
                                     <option value="cho" disabled>Чортків</option>
@@ -46,7 +46,7 @@
                             <label for="place" class="col-md-3 control-label">Місце</label>
 
                             <div class="col-md-7">
-                                <input id="place" type="text" class="form-control" name="place" value="{{ old('place') }}" placeholder="X00-0" required>
+                                <input id="place" type="text" class="form-control" name="place" value="" placeholder="X00-0" required>
 
                                 @if ($errors->has('place'))
                                     <span class="help-block">
@@ -59,7 +59,7 @@
                         <div id="category" class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
                         <label for="location" class="col-md-3 control-label">Категорія</label>
                             <div class="col-md-7">
-                                <select id="category_id" type="text" class="form-control" name="category_id" value="" required>
+                                <select id="category_id" type="text" class="form-control" name="category_id" value="{{ old('category') }}" required>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
@@ -91,7 +91,7 @@
                             <label for="quantity" class="col-md-3 control-label" style="margin: 0 -10px 0 0">Кількість</label>
                             
                             <div class="col-md-2" style="margin: 0 -10px 0 0">
-                                <input id="quantity-aviable" type="text" name="quantity-aviable" class="form-control text-center" value="{{ old('quantity') }}" style="font-size: 26px; padding: 0" disabled>
+                                <input id="quantity-aviable" type="text" name="quantity-aviable" class="form-control text-center" value="" style="font-size: 26px; padding: 0" disabled>
                             </div>                           
 
                             <div class="col-md-2" style="margin: 0 -10px 0 0">

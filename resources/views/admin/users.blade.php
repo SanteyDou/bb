@@ -73,7 +73,7 @@
   <script>
     var elems = document.getElementsByClassName('delete');
     var confirmIt = function (e) {
-        if (!confirm('Ви справді бажаєте видалити цього користувача?')) e.preventDefault();
+        if (!confirm('Ви справді бажаєте видалити користувача?')) e.preventDefault();
     };
     for (var i = 0, l = elems.length; i < l; i++) {
         elems[i].addEventListener('click', confirmIt, false);

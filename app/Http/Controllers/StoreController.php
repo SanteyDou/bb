@@ -28,11 +28,14 @@ class StoreController extends Controller
                         ->first();
         // dd($request);
         
-        if($request->input('action') == '-' && $place->quantity < $request->input('quantity')){
-            return redirect()->route('main')->with('error', 'Немає такої кількості матеріалу на даному місці');
-        }
+        
 
         if($place){
+            
+            if($request->input('action') == '-' && $place->quantity < $request->input('quantity')){
+                return redirect()->route('main')->with('error', 'Немає такої кількості матеріалу на даному місці')->withInput();
+            }
+
             if ($request->input('action') == '+')
                 $place->quantity += $request->input('quantity');
             else if($request->input('action') == '-')
