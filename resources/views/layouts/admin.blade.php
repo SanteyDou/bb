@@ -9,6 +9,12 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.cat') }}">
+                  <span></span>
+                  Категорії
+                </a>
+              </li>
+              <li class="nav-item">
                   <div class="nav-link" style="color: #636b6f; padding: 0 15px">Склади по локаціям:</div>
               </li>
                 <ul class="nav">
@@ -28,12 +34,6 @@
                     </a>
                   </li>
                 </ul>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.cat') }}">
-                  <span></span>
-                  Категорії
-                </a>
-              </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.users') }}">
                   <span></span>
