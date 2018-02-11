@@ -195,7 +195,7 @@
             $.ajax({
                 type:'GET',
 
-                url:'/ajaxRequestUser',
+                url:'ajaxRequestUser',
 
                 data:{personal_id:personal_id},
 
@@ -222,7 +222,7 @@
             $.ajax({
                 type:'GET',
 
-                url:'/ajaxRequestByPlace',
+                url:'ajaxRequestByPlace',
 
                 data:{place:place},
 
@@ -249,7 +249,7 @@
         $.ajax({
             type:'GET',
 
-            url:'/ajaxRequestByMatchcode',
+            url:'ajaxRequestByMatchcode',
 
             data:{matchcode:matchcode, category_id:category_id},
 

@@ -6,7 +6,7 @@
 
   <h2>Додати категорію</h2>
 
-  <form action="cat/add" method="POST" class="col-md-9 offset-md-3">
+  <form action="{{ route('admin.catAddForm') }}" method="POST" class="col-md-9 offset-md-3">
     {{ csrf_field() }}
 
     <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">

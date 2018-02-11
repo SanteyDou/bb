@@ -4,13 +4,7 @@
 
   <div class="container-fluid col-sm-11">
     <h2>Логи записів в БД</h2>
-
-    {{--  <div class="text-right" style="margin: -42px 20px 0 0">
-       <input type="text" name="search" placeholder="матчкод" style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
-      <button class="btn btn-default">Пошук</button> 
-        <a class="btn btn-info" style="margin: 0 0 0 50px" href="{{ $loc }}/add">Додати місце</a>
-    </div> --}}
-    
+  
       <div class="table-responsive">
         <table class="table table-sm">
           <thead>

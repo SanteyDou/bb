@@ -6,7 +6,7 @@
 
 <h2>Користувачі</h2>
 <div class="text-right" style="margin: -42px 20px 0 0">
-  <a class="btn btn-primary" style="margin: 0 0 0 50px" href="user/add"><i class="fas fa-user-plus"></i></a>
+  <a class="btn btn-primary" style="margin: 0 0 0 50px" href="{{ route('admin.userAdd') }}"><i class="fas fa-user-plus"></i></a>
 </div>
 
   <div class="table-responsive">
@@ -33,10 +33,10 @@
               @endif
           </td>
           <td class="text-center">
-            <a class="btn btn-success" href="user/edit/{{ $user->personal_id }}">
+            <a class="btn btn-success" href="{{ route('admin') }}/user/edit/{{ $user->personal_id }}">
               <i class="fas fa-edit"></i>
             </a>
-            <a class="btn btn-danger delete" href="user/delete/{{ $user->personal_id }}">
+            <a class="btn btn-danger delete" href="{{ route('admin') }}/user/delete/{{ $user->personal_id }}">
               <i class="far fa-trash-alt"></i>
             </a>
           </td>
