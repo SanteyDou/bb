@@ -6,7 +6,7 @@
 
   <h2>Редагувати користувача</h2>
 
-  <form action="/admin/user/edit/{{ $user->personal_id }}" method="POST" class="col-md-9 offset-md-3">
+  <form action="user/edit/{{ $user->personal_id }}" method="POST" class="col-md-9 offset-md-3">
     {{ csrf_field() }}
 
     <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">

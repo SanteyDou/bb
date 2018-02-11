@@ -6,7 +6,7 @@
 
 <h2>Категорії</h2>
 <div class="text-right" style="margin: -42px 20px 0 0">
-  <a class="btn btn-primary" style="margin: 0 0 0 50px" href="/admin/cat/add"><i class="far fa-calendar-plus"></i></a>
+  <a class="btn btn-primary" style="margin: 0 0 0 50px" href="cat/add"><i class="far fa-calendar-plus"></i></a>
 </div>
 
   <div class="table-responsive">
@@ -25,7 +25,7 @@
           <td>{{ $category->name }}</td>
          
           <td class="text-center">
-            <a class="btn btn-success" href="/admin/cat/edit/{{ $category->id }}">
+            <a class="btn btn-success" href="cat/edit/{{ $category->id }}">
               <i class="fas fa-edit"></i>
             </a>
           </td>
