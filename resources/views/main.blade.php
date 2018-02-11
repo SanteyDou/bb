@@ -9,7 +9,7 @@
                 <div class="panel-heading text-center"><h3>Прихід-розхід склад Brett-Bau</h3></div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('main') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('main.post') }}">
                         {{ csrf_field() }}
                         <br/>
                         <div id="personal_id" class="form-group{{ $errors->has('personal_id') ? ' has-error' : '' }}">

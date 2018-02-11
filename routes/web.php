@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'StoreController@index')->name('main');
-Route::post('/', 'StoreController@store');
+Route::post('/', 'StoreController@store')->name('main.post');
 
 Route::get('/ajaxRequestUser', 'Admin\UserController@ajaxRequest');
 Route::get('/ajaxRequestByPlace', 'StoreController@ajaxRequestByPlace');
