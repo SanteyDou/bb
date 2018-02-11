@@ -32,7 +32,7 @@
     </div>
     <div class="form-group">
       <label for="quantity">Кількість</label>
-      <input type="number" min="0" class="form-control" name="quantity" placeholder="123">
+      <input type="number" min="0" class="form-control" name="quantity" placeholder="123" value="0">
     </div>
     <div class="form-group">
       <label for="min_quantity">Мінімальна кількість</label>
