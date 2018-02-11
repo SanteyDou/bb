@@ -24,12 +24,12 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin') }}/che" style="padding: 10px 50px">
+                    <a class="nav-link" href="{{ route('admin') }}/che" style="padding: 10px 50px; pointer-events: none;">
                       Чернівці
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin') }}/cho" style="padding: 10px 50px">
+                    <a class="nav-link" href="{{ route('admin') }}/cho" style="padding: 10px 50px; pointer-events: none;">
                       Чортків
                     </a>
                   </li>

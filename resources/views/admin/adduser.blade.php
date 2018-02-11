@@ -45,8 +45,8 @@
     <label for="location">Локація</label>
     <select id="location" type="test" class="form-control" name="location" value="{{ old('location') }}" required>
         <option value="ter" selected>Тернопіль</option>
-        <option value="che">Чернівці</option>
-        <option value="cho">Чортків</option>
+        <option value="che" disabled>Чернівці</option>
+        <option value="cho" disabled>Чортків</option>
     </select>
     </div>
 
