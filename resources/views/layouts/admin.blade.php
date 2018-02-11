@@ -13,41 +13,41 @@
               </li>
                 <ul class="nav">
                   <li class="nav-item" >
-                    <a class="nav-link active" href="admin/ter" style="padding: 10px 50px">
+                    <a class="nav-link active" href="{{ route('admin') }}/ter" style="padding: 10px 50px">
                       Тернопіль
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="admin/che" style="padding: 10px 50px">
+                    <a class="nav-link" href="{{ route('admin') }}/che" style="padding: 10px 50px">
                       Чернівці
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="admin/cho" style="padding: 10px 50px">
+                    <a class="nav-link" href="{{ route('admin') }}/cho" style="padding: 10px 50px">
                       Чортків
                     </a>
                   </li>
                 </ul>
               <li class="nav-item">
-                <a class="nav-link" href="admin/cat">
+                <a class="nav-link" href="{{ route('admin.cat') }}">
                   <span></span>
                   Категорії
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="admin/users">
+                <a class="nav-link" href="{{ route('admin.users') }}">
                   <span></span>
                   Користувачі
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="admin/toorder">
+                <a class="nav-link" href="{{ route('admin.toorder') }}">
                   <span></span>
                   Дозамовити
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="admin/logs">
+                <a class="nav-link" href="{{ route('admin.logs') }}">
                   <span></span>
                   Логи
                 </a>
