@@ -3,6 +3,45 @@
 @section('content')
 
 <div class="container">
+    <div class="text-center">
+    <form id="" method="GET" action="">
+        {{ csrf_field() }}
+        <select id="location" type="text" name="location" class="form-group{{ $errors->has('personal_id') ? ' has-error' : '' }}" value="" required style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
+            <option value="ter">Тернопіль</option>
+            <option value="che" disabled>Чернівці</option>
+            <option value="cho" disabled>Чортків</option>
+        </select>
+        <select id="category_id_search" type="text" name="category_id" value="{{ old('category') }}" required style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>    
+        @if ($errors->has('category'))
+            <span class="help-block">
+                <strong>{{ $errors->first('category') }}</strong>
+            </span>
+        @endif
+        <input type="text" name="matchcode" placeholder="матчкод" style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
+        <a type="" id="main-search" class="btn btn-default">Пошук</a>
+    </form>
+    </div>
+
+    <div id="show" class="table-responsive">
+        <table id="search-table" class="table table-striped table-sm text-center">
+          <thead>
+            <tr>
+              <th class="text-center">Місце</th>
+              <th class="text-center">Матч-код</th>
+              <th class="text-center">Кількість</th>
+            </tr>
+          </thead>
+          <tbody id="table-search">
+                    
+          </tbody>
+        </table>
+
+    </div>
+    <br/>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -248,15 +287,12 @@
 
         $.ajax({
             type:'GET',
-
             url:'ajaxRequestByMatchcode',
-
             data:{matchcode:matchcode, category_id:category_id},
 
             success:function(data){
                 $("input[name=place]").val(data.place);
                 $("input[name=quantity-aviable]").val(data.quantity);
-
                 $('#matchcode').removeClass('has-error');
                 $('#category').removeClass('has-error');
 
@@ -269,6 +305,32 @@
 
 
             }
+
+        });
+
+    });
+
+    $("#main-search").on('click', function(e) {
+        var location = $("select[name=location]").val();
+        var matchcode = $("input[name=matchcode]").val();
+        var category_id = $("select[name=category_id]").val();
+
+        $("#search-table > tbody").html("");
+
+        $.ajax({
+            type:'GET',
+            url:'ajaxRequestSearch',
+            data:{matchcode:matchcode, category_id:category_id, location:location},
+
+            success:function(data){
+                $('#search-table').append(
+                $.map(data, function (item, index) {
+                    return '<tr><td>' + item.place + 
+                    '</td><td>' + item.matchcode +
+                    '</td><td>' + item.quantity + '</td></tr>';
+                }).join());
+
+            },
 
         });
 

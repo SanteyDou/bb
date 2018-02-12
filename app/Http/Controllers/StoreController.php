@@ -11,7 +11,7 @@ class StoreController extends Controller
 {
     public function index()
     {
-        return view('main')->with(['message' => null, 'categories' => Category::all()]);
+        return view('main')->with(['message' => null, 'categories' => Category::all(), 'objStorage' => '']);
     }
 
     public function store(Request $request)
@@ -68,6 +68,20 @@ class StoreController extends Controller
 
     //   return response()->json($places);
       return response()->json(['place' => $place->place, 'quantity' => $place->quantity]);
+  
+    }
+
+    public function ajaxRequestSearch()
+    {
+  
+      $places = Storage::where('matchcode', request()->matchcode)
+      ->where('category_id',  request()->category_id)
+      ->where('location',  request()->location)
+      ->get();
+    //  $place = Storage::where('matchcode', request()->matchcode)->where('category_id',  request()->category_id)->where('quantity', '>', 0)->first();
+
+       return response()->json($places);
+    //  return response()->json(['place' => $place->place, 'quantity' => $place->quantity]);
   
     }
     

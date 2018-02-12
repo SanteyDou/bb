@@ -17,6 +17,7 @@ Route::post('/add', 'StoreController@store')->name('main.post');
 Route::get('/ajaxRequestUser', 'Admin\UserController@ajaxRequest');
 Route::get('/ajaxRequestByPlace', 'StoreController@ajaxRequestByPlace');
 Route::get('/ajaxRequestByMatchcode', 'StoreController@ajaxRequestByMatchcode');
+Route::get('/ajaxRequestSearch', 'StoreController@ajaxRequestSearch');
 
 
 Auth::routes();
