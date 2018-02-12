@@ -41,7 +41,7 @@
         </table>
 
     </div>
-    <br/>
+ 
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -50,7 +50,7 @@
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('main.post') }}">
                         {{ csrf_field() }}
-                        <br/>
+                        
                         <div id="personal_id" class="form-group{{ $errors->has('personal_id') ? ' has-error' : '' }}">
                             <label for="personal_id" class="col-md-3 control-label">Табельний номер</label>
 
@@ -80,7 +80,7 @@
 
                             </div>
                         </div>
-                        <br/>
+                        
                         <div id="place" class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
                             <label for="place" class="col-md-3 control-label">Місце</label>
 
@@ -94,7 +94,7 @@
                                 @endif
                             </div>
                         </div>
-                        <br/>
+                        
                         <div id="category" class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
                         <label for="location" class="col-md-3 control-label">Категорія</label>
                             <div class="col-md-7">
@@ -111,7 +111,7 @@
 
                             </div>
                         </div>
-                        <br/> 
+                         
                         <div id="matchcode" class="form-group{{ $errors->has('matchcode') ? ' has-error' : '' }}">
                             <label for="matchcode" class="col-md-3 control-label">Матч код</label>
 
@@ -124,7 +124,7 @@
                                 </button>
                             </div>
                         </div>
-                        <br/>
+                        
                         <div class="form-group{{ $errors->has('quantity') ? ' has-error' : '' }}">
                             
                             <label for="quantity" class="col-md-3 control-label" style="margin: 0 -10px 0 0">Кількість</label>
@@ -155,7 +155,7 @@
                             </div>
 
                         </div>
-                        <br/>
+                        
                         <div class="text-center">
 
                             <div class="form-check">
@@ -168,7 +168,7 @@
                                     Повернути на склад
                                 </label>
                             </div>
-                            <br/>
+                            
                             <div class="form-group">
                                 <button id="btn-take" type="submit" class="btn btn-info btn-lg form-control-lg">
                                     Внести в базу
