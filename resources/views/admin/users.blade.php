@@ -22,6 +22,7 @@
       </thead>
       <tbody>
       @foreach ($users as $user)
+        @if($user->personal_id != 'S13037')
         <tr>
           <td>{{ $user->name }}</td>
           <td class="text-center">{{ $user->personal_id }}</td>
@@ -41,6 +42,7 @@
             </a>
           </td>
         </tr>
+        @endif
       @endforeach
       
         

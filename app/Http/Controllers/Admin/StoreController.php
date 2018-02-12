@@ -30,6 +30,21 @@ class StoreController extends Controller
         return view('admin.index');
     }
 
+    public function storeByMatchcode($loc, Request $request)
+    {
+        
+        if (in_array($loc, ['ter', 'che', 'cho'])) {
+            $objStorage = Storage::where('location', $loc)
+                        ->where('matchcode', $request->matchcode)
+                        ->orderBy('place', 'asc')
+                        ->paginate(15);
+            // dump($objStorage);
+            return view('admin.store', ['loc' => $loc, 'objStorage' => $objStorage]);
+        };
+
+        return view('admin.index');
+    }
+
     public function addPlaceForm($loc)
     {
         return view('admin.addplace', ['loc' => $loc, 'categories' => Category::orderBy('id', 'asc')->get(), 'message' => null, 'error' => null]);
