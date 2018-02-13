@@ -97,4 +97,11 @@ class StoreController extends Controller
     
         return redirect()->route('admin.store', ['loc' => $request->location]);
     }
+    
+    public function getCSV($loc)
+    {
+        $csvExporter = new \Laracsv\Export();
+        $csvExporter->build(Storage::where('location', $loc)->get(), ['place', 'matchcode', 'quantity'])->download();
+        
+    }
 }
