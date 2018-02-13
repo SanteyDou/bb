@@ -327,7 +327,7 @@
                 console.log(data);
                 $('#search-table').append(
                 $.map(data, function (item, index) {
-                    return '<tr><td>' + item.place +
+                    return '<tr><td>' + item.place +     
                     '</td><td>' + item.matchcode +
                     '</td><td>' + item.quantity + '</td></tr>';
                 }).join());

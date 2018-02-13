@@ -21,7 +21,8 @@ class StoreController extends Controller
         
         if (in_array($loc, ['ter', 'che', 'cho'])) {
             $objStorage = Storage::where('location', $loc)
-                        ->orderBy('place', 'asc')
+                        ->orderBy('place', 'asc')           
+                        ->orderByRaw('LENGTH(place) asc')                        
                         ->paginate(15);
             // dump($objStorage);
             return view('admin.store', ['loc' => $loc, 'objStorage' => $objStorage]);
@@ -35,8 +36,9 @@ class StoreController extends Controller
         
         if (in_array($loc, ['ter', 'che', 'cho'])) {
             $objStorage = Storage::where('location', $loc)
-                        ->whereRaw('matchcode LIKE ?', ["%".request()->matchcode."%"]) 
-                        ->orderBy('place', 'asc')
+                        ->whereRaw('matchcode LIKE ?', ["%".request()->matchcode."%"])
+                        ->orderBy('place', 'asc')           
+                        ->orderByRaw('LENGTH(place) asc') 
                         ->paginate(15);
             // dump($objStorage);
             return view('admin.store', ['loc' => $loc, 'objStorage' => $objStorage]);
