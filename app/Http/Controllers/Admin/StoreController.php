@@ -35,7 +35,7 @@ class StoreController extends Controller
         
         if (in_array($loc, ['ter', 'che', 'cho'])) {
             $objStorage = Storage::where('location', $loc)
-                        ->where('matchcode', $request->matchcode)
+                        ->whereRaw('matchcode LIKE ?', ["%".request()->matchcode."%"]) 
                         ->orderBy('place', 'asc')
                         ->paginate(15);
             // dump($objStorage);

@@ -23,7 +23,7 @@ class StoreController extends Controller
 
         $place = Storage::where('place', $request->input('place'))
                         ->where('location', $request->input('location'))
-                        ->where('matchcode', $request->input('matchcode'))
+                        ->whereRaw('matchcode LIKE ?', ["%".$request->input('matchcode')."%"])
                         ->where('category_id', $request->input('category_id'))
                         ->first();
         // dd($request);
@@ -64,7 +64,10 @@ class StoreController extends Controller
     {
   
     //   $places = Storage::where('matchcode', request()->matchcode)->where('category_id',  request()->category_id)->get()->toJson();
-      $place = Storage::where('matchcode', request()->matchcode)->where('category_id',  request()->category_id)->where('quantity', '>', 0)->first();
+      $place = Storage::whereRaw('matchcode LIKE ?', ["%".request()->matchcode."%"]) 
+                ->where('category_id',  request()->category_id)
+                ->where('quantity', '>', 0)
+                ->first();
 
     //   return response()->json($places);
       return response()->json(['place' => $place->place, 'quantity' => $place->quantity]);
@@ -74,9 +77,9 @@ class StoreController extends Controller
     public function ajaxRequestSearch()
     {
   
-      $places = Storage::where('matchcode', request()->matchcode)
-      ->where('category_id',  request()->category_id)
+      $places = Storage::where('category_id',  request()->category_id)
       ->where('location',  request()->location)
+      ->whereRaw('matchcode LIKE ?', ["%".request()->matchcode."%"])     
       ->get();
     //  $place = Storage::where('matchcode', request()->matchcode)->where('category_id',  request()->category_id)->where('quantity', '>', 0)->first();
 
