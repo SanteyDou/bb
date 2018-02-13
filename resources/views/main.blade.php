@@ -6,7 +6,7 @@
     <div class="text-center">
     <form id="" method="GET" action="">
         {{ csrf_field() }}
-        <select id="location" type="text" name="location" class="form-group{{ $errors->has('personal_id') ? ' has-error' : '' }}" value="" required style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
+        <select id="location_search" type="text" name="location" class="form-group{{ $errors->has('personal_id') ? ' has-error' : '' }}" value="" required style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
             <option value="ter">Тернопіль</option>
             <option value="che" disabled>Чернівці</option>
             <option value="cho" disabled>Чортків</option>
@@ -115,14 +115,14 @@
                         <div id="matchcode" class="form-group{{ $errors->has('matchcode') ? ' has-error' : '' }}">
                             <label for="matchcode" class="col-md-3 control-label">Матч код</label>
 
-                            <div class="col-md-5">
+                            <div class="col-md-7">
                                 <input id="matchcode" type="text" class="form-control" name="matchcode" value="{{ old('matchcode') }}" required>
                             </div>
-                            <div class="col-md-2">
+                            <!-- <div class="col-md-2">
                                 <button id="search" type="button" class="btn btn-default form-control">
                                     Пошук
                                 </button>
-                            </div>
+                            </div> -->
                         </div>
                         <br/>
                         <div class="form-group{{ $errors->has('quantity') ? ' has-error' : '' }}">
@@ -281,34 +281,34 @@
 
     });
 
-    $("#search").on('click', function(e) {
-        var matchcode = $("input[name=matchcode]").val();
-        var category_id = $("select[name=category_id]").val();
+    // $("#search").on('click', function(e) {
+    //     var matchcode = $("input[name=matchcode]").val();
+    //     var category_id = $("select[name=category_id]").val();
 
-        $.ajax({
-            type:'GET',
-            url:'ajaxRequestByMatchcode',
-            data:{matchcode:matchcode, category_id:category_id},
+    //     $.ajax({
+    //         type:'GET',
+    //         url:'ajaxRequestByMatchcode',
+    //         data:{matchcode:matchcode, category_id:category_id},
 
-            success:function(data){
-                $("input[name=place]").val(data.place);
-                $("input[name=quantity-aviable]").val(data.quantity);
-                $('#matchcode').removeClass('has-error');
-                $('#category').removeClass('has-error');
+    //         success:function(data){
+    //             $("input[name=place]").val(data.place);
+    //             $("input[name=quantity-aviable]").val(data.quantity);
+    //             $('#matchcode').removeClass('has-error');
+    //             $('#category').removeClass('has-error');
 
-            },
+    //         },
 
-            error:function(data){
-                $("input[name=matchcode]").val('');
-                $('#matchcode').addClass('has-error');
-                $('#category').addClass('has-error');
+    //         error:function(data){
+    //             $("input[name=matchcode]").val('');
+    //             $('#matchcode').addClass('has-error');
+    //             $('#category').addClass('has-error');
 
 
-            }
+    //         }
 
-        });
+    //     });
 
-    });
+    // });
 
     $("#main-search").on('click', function(e) {
         var location = $("select[name=location]").val();
@@ -323,9 +323,11 @@
             data:{matchcode:matchcode, category_id:category_id, location:location},
 
             success:function(data){
+
+                console.log(data);
                 $('#search-table').append(
                 $.map(data, function (item, index) {
-                    return '<tr><td>' + item.place + 
+                    return '<tr><td>' + item.place +
                     '</td><td>' + item.matchcode +
                     '</td><td>' + item.quantity + '</td></tr>';
                 }).join());

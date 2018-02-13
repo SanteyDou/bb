@@ -79,7 +79,7 @@ class StoreController extends Controller
   
       $places = Storage::where('category_id',  request()->category_id)
       ->where('location',  request()->location)
-      ->whereRaw('matchcode LIKE ?', ["%".request()->matchcode."%"])     
+      ->whereRaw('matchcode LIKE ?', ["%".request()->matchcode."%"])
       ->get();
     //  $place = Storage::where('matchcode', request()->matchcode)->where('category_id',  request()->category_id)->where('quantity', '>', 0)->first();
 
