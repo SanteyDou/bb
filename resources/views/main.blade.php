@@ -1,5 +1,18 @@
 @extends('layouts.app')
 
+@section('style')
+<style>
+.table-search{
+        width: 100%;
+        height: 120px;
+        margin-bottom: 15px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        border: 1px solid #DDD;
+    }
+    </style>
+@endsection
+
 @section('content')
 
 <div class="container">
@@ -26,18 +39,17 @@
     </form>
     </div>
 
-    <div id="show" class="table-responsive">
+    <div id="show" class="table-search">
         <table id="search-table" class="table table-striped table-sm text-center">
-          <thead>
+            <thead>
             <tr>
-              <th class="text-center">Місце</th>
-              <th class="text-center">Матч-код</th>
-              <th class="text-center">Кількість</th>
+                <th class="text-center">Місце</th>
+                <th class="text-center">Матч-код</th>
+                <th class="text-center">К-сть</th>
             </tr>
-          </thead>
-          <tbody id="table-search">
-                    
-          </tbody>
+            </thead>
+            <tbody id="table-search">                    
+            </tbody>
         </table>
 
     </div>
@@ -118,11 +130,11 @@
                             <div class="col-md-7">
                                 <input id="matchcode" type="text" class="form-control" name="matchcode" value="{{ old('matchcode') }}" required>
                             </div>
-                            <!-- <div class="col-md-2">
+                            {{-- <div class="col-md-2">
                                 <button id="search" type="button" class="btn btn-default form-control">
                                     Пошук
                                 </button>
-                            </div> -->
+                            </div> --}}
                         </div>
                         <br/>
                         <div class="form-group{{ $errors->has('quantity') ? ' has-error' : '' }}">
@@ -257,6 +269,7 @@
     $("#place").keypress(function(e) {
         if(e.which == 13) {
             var place = $("input[name=place]").val();
+            $("input[name=quantity]").val('');
             
             $.ajax({
                 type:'GET',

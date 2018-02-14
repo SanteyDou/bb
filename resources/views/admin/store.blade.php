@@ -15,7 +15,6 @@
         <a class="btn btn-primary" style="margin: 0 0 0 50px" href="{{ route('admin') }}/{{ $loc }}/add"><i class="fas fa-cart-plus"></i></a>
       </form>
 
-
     </div>
     
       <div class="table-responsive">
@@ -51,10 +50,9 @@
 
         <div class="text-right">
             {{ $objStorage->links() }}
-        </div> 
-        <a class="btn btn-info" href="{{ route('admin') }}/getcsv/{{ $loc }}">Завантажити Excel</a>
+        </div>
+        <a class="btn btn-info" href="{{ route('admin') }}/getcsv/{{ $loc }}">Завантажити залишки</a>
       </div>
     </div>
-
 
 @endsection

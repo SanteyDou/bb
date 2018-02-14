@@ -72,6 +72,14 @@ class StoreController extends Controller
         return view('admin.toorder', ['objStorage' => $objStorage]);
     }
 
+    public function toOrderGetCSV()
+    {
+        $csvExporter = new \Laracsv\Export();
+        $csvExporter->build(Storage::whereRaw('quantity < min_quantity')
+                                    ->orderBy('place', 'asc')->get(), ['location', 'place', 'matchcode', 'category.name', 'quantity', 'min_quantity'])->download();
+        
+    }
+
     public function editPlaceForm($loc, $place){
 
         return view('admin.editplace', ['loc' => $loc, 

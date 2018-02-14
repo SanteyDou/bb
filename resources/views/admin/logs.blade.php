@@ -48,7 +48,8 @@
 
         <div class="text-right">
           {{ $logs->links() }}
-        </div>  
+        </div> 
+        {{-- <a class="btn btn-info" href="{{ route('admin')}}/logs/getcsv">Завантажити Excel</a> --}}
       </div>
     </div>
 
