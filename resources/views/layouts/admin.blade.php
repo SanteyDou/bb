@@ -31,7 +31,7 @@
                     </h4>
                 </div>
                 <div id="ter" class="panel-collapse collapse {{ ($loc == 'ter') ? 'in' : '' }}">
-                    <div class="panel-body text-right">
+                    <div class="panel-body">
                         <table class="table">
                             <tr>
                                 <td>
@@ -62,7 +62,7 @@
                   </h4>
                 </div>
                 <div id="che" class="panel-collapse collapse {{ ($loc == 'che') ? 'in' : '' }}">
-                  <div class="panel-body text-right">
+                  <div class="panel-body">
                       <table class="table">
                           <tr>
                               <td>
@@ -93,7 +93,7 @@
                   </h4>
                 </div>
                 <div id="cho" class="panel-collapse collapse {{ ($loc == 'cho') ? 'in' : '' }}">
-                  <div class="panel-body text-right">
+                  <div class="panel-body">
                       <table class="table">
                           <tr>
                               <td>
@@ -115,8 +115,8 @@
                 </div>           
               </div>   
 
-            </div>
 
+            </div>
           </div>        
         </div>      
 
