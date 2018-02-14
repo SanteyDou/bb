@@ -11,6 +11,7 @@
 |
 */
 
+<<<<<<< .merge_file_a02788
 Route::get('/', 'StoreController@index')->name('main');
 Route::post('/add', 'StoreController@store')->name('main.post');
 
@@ -52,3 +53,12 @@ Route::prefix('admin')->group(function () {
     Route::post('/{loc}/edit/{place}', 'Admin\StoreController@editPlace')->middleware(['auth', 'admin'])->name('admin.edit');
     
 });
+=======
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+>>>>>>> .merge_file_a04472
