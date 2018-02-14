@@ -32,6 +32,9 @@
             
           </tbody>
         </table>
+        <div class="text-right">
+          {{ $objStorage->links() }}
+        </div>
       </div>
     </div>
 

@@ -66,7 +66,7 @@ class StoreController extends Controller
     {
         $objStorage = Storage::whereRaw('quantity < min_quantity')
                         ->orderBy('place', 'asc')
-                        ->get();
+                        ->paginate(15);
             // dump($objStorage);
 
         return view('admin.toorder', ['objStorage' => $objStorage]);
