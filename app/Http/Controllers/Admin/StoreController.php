@@ -13,7 +13,7 @@ class StoreController extends Controller
 {
     public function index()
     {
-        return view('admin.index', ['message' => null, 'error' => null]);
+        return view('admin.index', ['message' => null, 'error' => null, 'loc' => '']);
     }
 
     public function storeByLocation($loc)
@@ -62,20 +62,22 @@ class StoreController extends Controller
         return view('admin.addplace', ['loc' => $request->input('location'), 'categories' => Category::orderBy('id', 'asc')->get(), 'message' => 'Місце успішно створено', 'error' => null]);
     }
 
-    public function toOrder(Request $request)
+    public function toOrder(Request $request, $loc)
     {
         $objStorage = Storage::whereRaw('quantity < min_quantity')
+                        ->where('location', $loc)
                         ->orderBy('place', 'asc')
                         ->paginate(15);
             // dump($objStorage);
 
-        return view('admin.toorder', ['objStorage' => $objStorage]);
+        return view('admin.toorder', ['objStorage' => $objStorage, 'loc' => $loc]);
     }
 
-    public function toOrderGetCSV()
+    public function toOrderGetCSV($loc)
     {
         $csvExporter = new \Laracsv\Export();
         $csvExporter->build(Storage::whereRaw('quantity < min_quantity')
+                                    ->where('location', $loc)
                                     ->orderBy('place', 'asc')->get(), ['location', 'place', 'matchcode', 'category.name', 'quantity', 'min_quantity'])->download();
         
     }

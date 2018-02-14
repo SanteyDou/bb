@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        return view('admin.categories', ['categories' => Category::orderBy('id', 'asc')->get()]);
+        return view('admin.categories', ['categories' => Category::orderBy('id', 'asc')->get(), 'loc' => '']);
     }
 
     public function addCategoryForm()

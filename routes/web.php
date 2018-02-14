@@ -32,13 +32,6 @@ Route::prefix('admin')->group(function () {
     Route::post('/user/edit/{personal_id}', 'Admin\UserController@editUser')->middleware(['auth', 'admin'])->name('admin.userEdit');
     Route::get('/user/delete/{personal_id}', 'Admin\UserController@deleteUser')->middleware(['auth', 'admin'])->name('admin.userDelete');
     
-    Route::get('/logs', 'Admin\LogController@logs')->middleware(['auth', 'admin'])->name('admin.logs');
-    Route::post('/logs/search', 'Admin\LogController@logsSearch')->middleware(['auth', 'admin'])->name('admin.logsSearch');
-    Route::get('/logs/getcsv', 'Admin\LogController@getCSV')->middleware(['auth', 'admin'])->name('admin.logs.getCSV');
-
-    Route::get('/toorder', 'Admin\StoreController@toorder')->middleware(['auth', 'admin'])->name('admin.toorder');
-    Route::get('/toorder/getcsv', 'Admin\StoreController@toOrderGetCSV')->middleware(['auth', 'admin'])->name('admin.toorder.getcsv');
-
     Route::get('/getcsv/{loc}', 'Admin\StoreController@getCSV')->middleware(['auth', 'admin'])->name('admin.store.getcsv');
     
     Route::get('/cat', 'Admin\CategoryController@index')->middleware(['auth', 'admin'])->name('admin.cat');
@@ -53,5 +46,12 @@ Route::prefix('admin')->group(function () {
     Route::post('/{loc}/add', 'Admin\StoreController@addPlace')->middleware(['auth', 'admin'])->name('admin.add');
     Route::get('/{loc}/edit/{place}', 'Admin\StoreController@editPlaceForm')->middleware(['auth', 'admin'])->name('admin.editForm');
     Route::post('/{loc}/edit/{place}', 'Admin\StoreController@editPlace')->middleware(['auth', 'admin'])->name('admin.edit');
+
+    Route::get('/{loc}/toorder', 'Admin\StoreController@toorder')->middleware(['auth', 'admin'])->name('admin.toorder');
+    Route::get('/{loc}/toorder/getcsv', 'Admin\StoreController@toOrderGetCSV')->middleware(['auth', 'admin'])->name('admin.toorder.getcsv');
+
+    Route::get('/{loc}/logs', 'Admin\LogController@logs')->middleware(['auth', 'admin'])->name('admin.logs');
+    Route::post('/{loc}/logs/search', 'Admin\LogController@logsSearch')->middleware(['auth', 'admin'])->name('admin.logsSearch');
+    Route::get('/{loc}/logs/getcsv', 'Admin\LogController@getCSV')->middleware(['auth', 'admin'])->name('admin.logs.getCSV');
     
 });

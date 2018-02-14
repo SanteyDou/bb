@@ -12,7 +12,7 @@ class UserController extends Controller
 {
   public function index()
   {
-    return view('admin.users', ['users' => User::orderBy('personal_id', 'asc')->get()]);
+    return view('admin.users', ['users' => User::orderBy('personal_id', 'asc')->get(), 'loc' => '']);
   }
 
   public function addUserForm()
