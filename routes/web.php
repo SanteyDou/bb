@@ -33,6 +33,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/user/delete/{personal_id}', 'Admin\UserController@deleteUser')->middleware(['auth', 'admin'])->name('admin.userDelete');
     
     Route::get('/logs', 'Admin\LogController@logs')->middleware(['auth', 'admin'])->name('admin.logs');
+    Route::post('/logs/search', 'Admin\LogController@logsSearch')->middleware(['auth', 'admin'])->name('admin.logsSearch');
 
     Route::get('/toorder', 'Admin\StoreController@toorder')->middleware(['auth', 'admin'])->name('admin.toorder');
 
