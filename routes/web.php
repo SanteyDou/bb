@@ -61,4 +61,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+<<<<<<< .merge_file_a02908
 >>>>>>> .merge_file_a04472
+=======
+>>>>>>> .merge_file_a01104
