@@ -2,8 +2,8 @@
 
 @section('admin_content')
 
-  <div class="container-fluid col-sm-10">
-    <h2>Min Store</h2>
+  <div class="container-fluid">
+    <h2>Min Store {{ strtoupper($loc) }}</h2>
         
       <div class="table-responsive">
         <table class="table table-striped table-sm text-center">

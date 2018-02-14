@@ -9,11 +9,13 @@ use App\Category;
 
 class LogController extends Controller
 {    
-    public function logs()
+    public function logs($loc)
     {
-        $logs = Log::orderBy('created_at', 'desc')->paginate(15);
+        $logs = Log::where('location', $loc)
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(15);
 
-        return view('admin.logs', ['logs' => $logs]);
+        return view('admin.logs', ['loc' => $loc, 'logs' => $logs]);
     }
 
     static public function logStoreAction($data)
@@ -34,20 +36,21 @@ class LogController extends Controller
 
     }
 
-    public function logsSearch(Request $request)
+    public function logsSearch(Request $request, $loc)
     {
-        $logs = Log::where('place', $request->place)
+        $logs = Log::where('location', $loc)
+                    ->where('place', $request->place)
                     ->orderBy('created_at', 'desc')
                     ->paginate(15);
 
         if(!$request->place) {
-            return $this->logs();
+            return $this->logs($loc);
         }
 
-        return view('admin.logs', ['logs' => $logs]);
+        return view('admin.logs', ['logs' => $logs, 'loc' => $loc]);
     }
 
-    public function getCSV()
+    public function getCSV($loc)
     {
         $csvExporter = new \Laracsv\Export();
         $csvExporter->build(Log::orderBy('created_at', 'desc')->get(), ['personal_id', 'action', 'place', 'matchcode', 'category', 'quantity', 'created_at'])->download();

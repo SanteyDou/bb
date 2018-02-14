@@ -2,7 +2,7 @@
 
 @section('admin_content')
 
-<div class="container-fluid col-sm-10">
+<div class="container-fluid col-sm-11">
 
 <h2>Користувачі</h2>
 <div class="text-right" style="margin: -42px 20px 0 0">
