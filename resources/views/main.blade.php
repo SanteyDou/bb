@@ -6,12 +6,12 @@
     <div class="text-center">
     <form id="" method="GET" action="">
         {{ csrf_field() }}
-        <select id="location_search" type="text" name="location" class="form-group{{ $errors->has('personal_id') ? ' has-error' : '' }}" value="" required style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
+        <select id="location_search" type="text" name="location_search" class="form-group{{ $errors->has('personal_id') ? ' has-error' : '' }}" value="" required style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
             <option value="ter">Тернопіль</option>
             <option value="che" disabled>Чернівці</option>
             <option value="cho" disabled>Чортків</option>
         </select>
-        <select id="category_id_search" type="text" name="category_id" value="{{ old('category') }}" required style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
+        <select id="category_id_search" type="text" name="category_id_search" value="{{ old('category') }}" required style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
             @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
@@ -21,7 +21,7 @@
                 <strong>{{ $errors->first('category') }}</strong>
             </span>
         @endif
-        <input type="text" name="matchcode" placeholder="матчкод" style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
+        <input type="text" name="matchcode_search" placeholder="матчкод" style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
         <a type="" id="main-search" class="btn btn-default">Пошук</a>
     </form>
     </div>
@@ -281,39 +281,39 @@
 
     });
 
-    // $("#search").on('click', function(e) {
-    //     var matchcode = $("input[name=matchcode]").val();
-    //     var category_id = $("select[name=category_id]").val();
-
-    //     $.ajax({
-    //         type:'GET',
-    //         url:'ajaxRequestByMatchcode',
-    //         data:{matchcode:matchcode, category_id:category_id},
-
-    //         success:function(data){
-    //             $("input[name=place]").val(data.place);
-    //             $("input[name=quantity-aviable]").val(data.quantity);
-    //             $('#matchcode').removeClass('has-error');
-    //             $('#category').removeClass('has-error');
-
-    //         },
-
-    //         error:function(data){
-    //             $("input[name=matchcode]").val('');
-    //             $('#matchcode').addClass('has-error');
-    //             $('#category').addClass('has-error');
-
-
-    //         }
-
-    //     });
-
-    // });
-
-    $("#main-search").on('click', function(e) {
-        var location = $("select[name=location]").val();
+    {{--$("#search").on('click', function(e) {
         var matchcode = $("input[name=matchcode]").val();
         var category_id = $("select[name=category_id]").val();
+
+        $.ajax({
+            type:'GET',
+            url:'ajaxRequestByMatchcode',
+            data:{matchcode:matchcode, category_id:category_id},
+
+            success:function(data){
+                $("input[name=place]").val(data.place);
+                $("input[name=quantity-aviable]").val(data.quantity);
+                $('#matchcode').removeClass('has-error');
+                $('#category').removeClass('has-error');
+
+            },
+
+            error:function(data){
+                $("input[name=matchcode]").val('');
+                $('#matchcode').addClass('has-error');
+                $('#category').addClass('has-error');
+
+
+            }
+
+        });
+
+    });--}}
+
+    $("#main-search").on('click', function(e) {
+        var location = $("select[name=location_search]").val();
+        var matchcode = $("input[name=matchcode_search]").val();
+        var category_id = $("select[name=category_id_search]").val();
 
         $("#search-table > tbody").html("");
 
@@ -323,8 +323,6 @@
             data:{matchcode:matchcode, category_id:category_id, location:location},
 
             success:function(data){
-
-                console.log(data);
                 $('#search-table').append(
                 $.map(data, function (item, index) {
                     return '<tr><td>' + item.place +     
