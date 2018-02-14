@@ -20,8 +20,8 @@ class StoreController extends Controller
     {
         
         if (in_array($loc, ['ter', 'che', 'cho'])) {
-            $objStorage = Storage::where('location', $loc)
-                        ->orderBy('place', 'asc')
+            $objStorage = Storage::where('location', $loc)         
+                        ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')                        
                         ->paginate(15);
             // dump($objStorage);
             return view('admin.store', ['loc' => $loc, 'objStorage' => $objStorage]);
@@ -35,8 +35,8 @@ class StoreController extends Controller
         
         if (in_array($loc, ['ter', 'che', 'cho'])) {
             $objStorage = Storage::where('location', $loc)
-                        ->whereRaw('matchcode LIKE ?', ["%".request()->matchcode."%"]) 
-                        ->orderBy('place', 'asc')
+                        ->whereRaw('matchcode LIKE ?', ["%".request()->matchcode."%"])         
+                        ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc') 
                         ->paginate(15);
             // dump($objStorage);
             return view('admin.store', ['loc' => $loc, 'objStorage' => $objStorage]);
@@ -66,10 +66,18 @@ class StoreController extends Controller
     {
         $objStorage = Storage::whereRaw('quantity < min_quantity')
                         ->orderBy('place', 'asc')
-                        ->get();
+                        ->paginate(15);
             // dump($objStorage);
 
         return view('admin.toorder', ['objStorage' => $objStorage]);
+    }
+
+    public function toOrderGetCSV()
+    {
+        $csvExporter = new \Laracsv\Export();
+        $csvExporter->build(Storage::whereRaw('quantity < min_quantity')
+                                    ->orderBy('place', 'asc')->get(), ['location', 'place', 'matchcode', 'category.name', 'quantity', 'min_quantity'])->download();
+        
     }
 
     public function editPlaceForm($loc, $place){

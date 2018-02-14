@@ -76,15 +76,17 @@ class StoreController extends Controller
 
     public function ajaxRequestSearch()
     {
-  
-      $places = Storage::where('category_id',  request()->category_id)
-      ->where('location',  request()->location)
-      ->whereRaw('matchcode LIKE ?', ["%".request()->matchcode."%"])
-      ->get();
-    //  $place = Storage::where('matchcode', request()->matchcode)->where('category_id',  request()->category_id)->where('quantity', '>', 0)->first();
+        if(request()->matchcode != '') {
+            $places = Storage::where('category_id',  request()->category_id)
+                            ->where('location',  request()->location)
+                            ->whereRaw('matchcode LIKE ?', ["%".request()->matchcode."%"])
+                            ->get();
+            //  $place = Storage::where('matchcode', request()->matchcode)->where('category_id',  request()->category_id)->where('quantity', '>', 0)->first();
 
-       return response()->json($places);
-    //  return response()->json(['place' => $place->place, 'quantity' => $place->quantity]);
+            return response()->json($places);
+            //  return response()->json(['place' => $place->place, 'quantity' => $place->quantity]);
+        }
+      
   
     }
     

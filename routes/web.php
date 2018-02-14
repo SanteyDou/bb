@@ -33,10 +33,13 @@ Route::prefix('admin')->group(function () {
     Route::get('/user/delete/{personal_id}', 'Admin\UserController@deleteUser')->middleware(['auth', 'admin'])->name('admin.userDelete');
     
     Route::get('/logs', 'Admin\LogController@logs')->middleware(['auth', 'admin'])->name('admin.logs');
+    Route::post('/logs/search', 'Admin\LogController@logsSearch')->middleware(['auth', 'admin'])->name('admin.logsSearch');
+    Route::get('/logs/getcsv', 'Admin\LogController@getCSV')->middleware(['auth', 'admin'])->name('admin.logs.getCSV');
 
     Route::get('/toorder', 'Admin\StoreController@toorder')->middleware(['auth', 'admin'])->name('admin.toorder');
+    Route::get('/toorder/getcsv', 'Admin\StoreController@toOrderGetCSV')->middleware(['auth', 'admin'])->name('admin.toorder.getcsv');
 
-    Route::get('/getcsv/{loc}', 'Admin\StoreController@getCSV')->middleware(['auth', 'admin'])->name('admin.getcsv');
+    Route::get('/getcsv/{loc}', 'Admin\StoreController@getCSV')->middleware(['auth', 'admin'])->name('admin.store.getcsv');
     
     Route::get('/cat', 'Admin\CategoryController@index')->middleware(['auth', 'admin'])->name('admin.cat');
     Route::get('/cat/add', 'Admin\CategoryController@addCategoryForm')->middleware(['auth', 'admin'])->name('admin.catAddForm');
