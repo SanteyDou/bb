@@ -21,8 +21,8 @@
         {{ csrf_field() }}
         <select id="location_search" type="text" name="location_search" class="form-group{{ $errors->has('personal_id') ? ' has-error' : '' }}" value="" required style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
             <option value="ter">Тернопіль</option>
-            <option value="che" disabled>Чернівці</option>
-            <option value="cho" disabled>Чортків</option>
+            <option value="che">Чернівці</option>
+            <option value="cho">Чортків</option>
         </select>
         <select id="category_id_search" type="text" name="category_id_search" value="{{ old('category') }}" required style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
             @foreach ($categories as $category)
@@ -34,21 +34,27 @@
                 <strong>{{ $errors->first('category') }}</strong>
             </span>
         @endif
-        <input type="text" name="matchcode_search" placeholder="матчкод" style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
+        <input type="text" name="matchcode_search" placeholder="матч код" style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
         <a type="" id="main-search" class="btn btn-default">Пошук</a>
     </form>
     </div>
-
+        <!-- <table id="" class="table table-striped table-sm" style="margin: 0">
+            <tr>
+                <th class="text-left" style="padding-left: 50px">Місце</th>
+                <th class="text-center">Матч код</th>
+                <th class="text-right" style="padding-right: 50px">К-сть</th>
+            </tr>
+        </table> -->
     <div id="show" class="table-search">
         <table id="search-table" class="table table-striped table-sm text-center">
             <thead>
-            <tr>
-                <th class="text-center">Місце</th>
-                <th class="text-center">Матч-код</th>
-                <th class="text-center">К-сть</th>
-            </tr>
+                <tr>
+                    <th class="text-center">Місце</th>
+                    <th class="text-center">Матч-код</th>
+                    <th class="text-center">К-сть</th>
+                </tr>
             </thead>
-            <tbody id="table-search">                    
+            <tbody id="table-search">
             </tbody>
         </table>
 
@@ -81,8 +87,8 @@
                             <div class="col-md-3">
                                 <select id="location" type="text" class="form-control" name="location" value="{{ old('location') }}" required>
                                     <option value="ter">Тернопіль</option>
-                                    <option value="che" disabled>Чернівці</option>
-                                    <option value="cho" disabled>Чортків</option>
+                                    <option value="che">Чернівці</option>
+                                    <option value="cho">Чортків</option>
                                 </select>    
                                 @if ($errors->has('location'))
                                     <span class="help-block">
