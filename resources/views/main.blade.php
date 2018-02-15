@@ -114,7 +114,7 @@
                         </div>
                         <br/>
                         <div id="category" class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
-                        <label for="location" class="col-md-3 control-label">Категорія</label>
+                        <label for="category_id" class="col-md-3 control-label">Категорія</label>
                             <div class="col-md-7">
                                 <select id="category_id" type="text" class="form-control" name="category_id" value="{{ old('category') }}" required>
                                     @foreach ($categories as $category)
@@ -275,14 +275,16 @@
     $("#place").keypress(function(e) {
         if(e.which == 13) {
             var place = $("input[name=place]").val();
+            var location = $("select[name=location]").val();
             $("input[name=quantity]").val('');
+            console.log(location);
             
             $.ajax({
                 type:'GET',
 
                 url:'ajaxRequestByPlace',
 
-                data:{place:place},
+                data:{place:place, location:location},
 
                 success:function(data){
                     $("select[name=category_id]").val(data.category_id);

@@ -53,8 +53,10 @@ class StoreController extends Controller
 
     public function ajaxRequestByPlace()
     {
-  
-      $place = Storage::where('place', request()->place)->first();
+
+      $place = Storage::where('place', request()->place)
+                    ->where('location',  request()->location)
+                    ->first();
   
       return response()->json(['category_id' => $place->category_id, 'category' => $place->category->name, 'matchcode' => $place->matchcode, 'quantity' => $place->quantity]);
   

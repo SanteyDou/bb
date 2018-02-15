@@ -17,7 +17,7 @@ class UserController extends Controller
 
   public function addUserForm()
   {    
-    return view('admin.adduser');
+    return view('admin.adduser', ['loc' => '']);
   }
 
   public function addUser(Request $request)
