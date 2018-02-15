@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
 
     @yield('style')
     
@@ -89,7 +90,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 
-    <script  src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script  src="{{ asset('js/jquery-1.12.4.js') }}"></script>
+    <script  src="{{ asset('js/jquery-ui.js') }}"></script>
     <script defer src="{{ asset('js/font-awesome.js') }}"></script>
 
     @yield('scripts')

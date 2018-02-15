@@ -15,6 +15,10 @@
               <th class="text-center">Категорія</th>
               <th class="text-center">Кількість</th>
               <th class="text-center">Мінімальна кількість</th>
+              <th class="text-center">Статус</th>
+              <th class="text-center">E-mail вислано</th>
+              <th class="text-center">EBM стартовано</th>
+              <th class="text-center">Дія</th>
             </tr>
           </thead>
           <tbody>
@@ -27,6 +31,14 @@
               <td>{{ $storage->category->name }}</td>
               <td>{{ $storage->quantity }}</td>
               <td>{{ $storage->min_quantity }}</td>
+              <td>{{ $storage->status }}</td>
+              <td>{{ $storage->email_send }}</td>
+              <td>{{ $storage->ebm_started }}</td>
+              <td class="text-center">
+                <a class="btn btn-success" href="{{ route('admin') }}/{{ $loc }}/editorder/{{ $storage->place }}">
+                  <i class="fas fa-edit"></i>
+                </a>
+              </td>
             </tr>
           @endforeach          
             
@@ -38,6 +50,12 @@
         {{-- <a class="btn btn-info" href="{{ route('admin')}}/toorder/getcsv">Завантажити Excel</a> --}}
       </div>
     </div>
+
+
+@endsection
+
+@section('script')
+
 
 
 @endsection

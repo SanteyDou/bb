@@ -62,7 +62,7 @@ class StoreController extends Controller
         return view('admin.addplace', ['loc' => $request->input('location'), 'categories' => Category::orderBy('id', 'asc')->get(), 'message' => 'Місце успішно створено', 'error' => null]);
     }
 
-    public function toOrder(Request $request, $loc)
+    public function toOrder($loc)
     {
         $objStorage = Storage::whereRaw('quantity < min_quantity')
                         ->where('location', $loc)
@@ -106,6 +106,28 @@ class StoreController extends Controller
                       'min_quantity' => $request->min_quantity]);
     
         return redirect()->route('admin.store', ['loc' => $request->location]);
+    }
+
+    public function editToOrderForm($loc, $place){
+
+        return view('admin.editorder', ['loc' => $loc, 
+                                       'storage' => Storage::where(['place' => $place, 'location' => $loc])->first(),
+                                       'categories' => Category::orderBy('id', 'asc')->get(), 
+                                       'message' => null, 
+                                       'error' => null]);
+    }
+
+    public function editToOrder(Request $request){
+
+        // dump($request);
+
+        $place = Storage::where(['place' => $request->place, 'location' => $request->location])->first();
+
+        $place->update(['status' => $request->status,
+                      'email_send' => $request->email_send,
+                      'ebm_started' => $request->ebm_started]);
+    
+        return $this->toOrder($request->location);
     }
     
     public function getCSV($loc)
