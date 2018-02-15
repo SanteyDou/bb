@@ -37,7 +37,6 @@ class CategoryController extends Controller
 
     public function editCategoryForm($id)
     {
-
       $category = Category::where('id', $id)->first();
 
       return view('admin.editcategory', ['category' => $category]);      
@@ -45,7 +44,6 @@ class CategoryController extends Controller
 
     public function editCategory(Request $request)
     {
-
       try {
         $category = Category::where('id', $request->id)->first();
         $category->update(['name' => $request->name]);

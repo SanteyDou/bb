@@ -17,8 +17,7 @@ class StoreController extends Controller
     }
 
     public function storeByLocation($loc)
-    {
-        
+    {        
         if (in_array($loc, ['ter', 'che', 'cho'])) {
             $objStorage = Storage::where('location', $loc)         
                         ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')                        
@@ -31,8 +30,7 @@ class StoreController extends Controller
     }
 
     public function storeByMatchcode($loc, Request $request)
-    {
-        
+    {        
         if (in_array($loc, ['ter', 'che', 'cho'])) {
             $objStorage = Storage::where('location', $loc)
                         ->whereRaw('matchcode LIKE ?', ["%".request()->matchcode."%"])         
@@ -52,7 +50,6 @@ class StoreController extends Controller
 
     public function addPlace(Request $request)
     {
-
         $objStorage = Storage::create($request->input());
 
         if ($request->input('quantity')){
@@ -60,26 +57,6 @@ class StoreController extends Controller
         }   
 
         return view('admin.addplace', ['loc' => $request->input('location'), 'categories' => Category::orderBy('id', 'asc')->get(), 'message' => 'Місце успішно створено', 'error' => null]);
-    }
-
-    public function toOrder($loc)
-    {
-        $objStorage = Storage::whereRaw('quantity < min_quantity')
-                        ->where('location', $loc)
-                        ->orderBy('place', 'asc')
-                        ->paginate(15);
-            // dump($objStorage);
-
-        return view('admin.toorder', ['objStorage' => $objStorage, 'loc' => $loc]);
-    }
-
-    public function toOrderGetCSV($loc)
-    {
-        $csvExporter = new \Laracsv\Export();
-        $csvExporter->build(Storage::whereRaw('quantity < min_quantity')
-                                    ->where('location', $loc)
-                                    ->orderBy('place', 'asc')->get(), ['location', 'place', 'matchcode', 'category.name', 'quantity', 'min_quantity'])->download();
-        
     }
 
     public function editPlaceForm($loc, $place){
@@ -91,8 +68,8 @@ class StoreController extends Controller
                                        'error' => null]);
     }
 
-    public function editPlace(Request $request){
-
+    public function editPlace(Request $request)
+    {
         $place = Storage::where(['place' => $request->place, 'location' => $request->location])->first();
 
         if($place->matchcode != $request->matchcode && $place->quantity != 0){
@@ -108,11 +85,29 @@ class StoreController extends Controller
         return redirect()->route('admin.store', ['loc' => $request->location]);
     }
 
-    public function editToOrderForm($loc, $place){
+    public function toOrder($loc)
+    {
+        $objStorage = Storage::whereRaw('(quantity < min_quantity OR (status IS NOT NULL OR email_send IS NOT NULL OR ebm_started IS NOT NULL)) AND location=?', [$loc])
+                        ->orderBy('place', 'asc')
+                        ->paginate(15);
+            // dump($objStorage);
 
+        return view('admin.toorder', ['objStorage' => $objStorage, 'loc' => $loc]);
+    }
+
+    public function toOrderGetCSV($loc)
+    {
+        $csvExporter = new \Laracsv\Export();
+        $csvExporter->build(Storage::whereRaw('quantity < min_quantity')
+                                    ->where('location', $loc)
+                                    ->orderBy('place', 'asc')->get(), ['location', 'place', 'matchcode', 'category.name', 'quantity', 'min_quantity'])->download();       
+    }
+
+    public function editToOrderForm($loc, $place)
+    {
         return view('admin.editorder', ['loc' => $loc, 
                                        'storage' => Storage::where(['place' => $place, 'location' => $loc])->first(),
-                                       'categories' => Category::orderBy('id', 'asc')->get(), 
+                                       'categories' => Category::orderBy('id', 'asc')->get(),
                                        'message' => null, 
                                        'error' => null]);
     }
