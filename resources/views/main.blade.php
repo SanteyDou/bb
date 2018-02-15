@@ -185,12 +185,12 @@
                         <div class="text-center">
 
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="action" id="remove" value="-" checked>
-                                <label class="form-check-label" for="remove" style="font-size: 20px">
+                                <input class="form-check-input" type="radio" name="action" id="remove" value="-" required>
+                                <label class="form-check-label" for="remove" style="font-size: 24px">
                                     Взяти зі складу
                                 </label>
-                                <input class="form-check-input" type="radio" name="action" id="add" value="+" style="margin:0 0 0 50px;">
-                                <label class="form-check-label" for="add" style="font-size: 20px">
+                                <input class="form-check-input" type="radio" name="action" id="add" value="+" style="margin:0 0 0 50px;" required>
+                                <label class="form-check-label" for="add" style="font-size: 24px">
                                     Повернути на склад
                                 </label>
                             </div>
