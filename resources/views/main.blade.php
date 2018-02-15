@@ -9,8 +9,16 @@
         overflow-x: hidden;
         overflow-y: auto;
         border: 1px solid #DDD;
+
     }
-    </style>
+::-webkit-scrollbar {
+    width: 40px;
+}
+::-webkit-scrollbar-thumb {
+    background: lightblue; 
+    border-radius: 10px;
+}
+</style>
 @endsection
 
 @section('content')
@@ -178,11 +186,11 @@
 
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="action" id="remove" value="-" checked>
-                                <label class="form-check-label" for="remove">
+                                <label class="form-check-label" for="remove" style="font-size: 20px">
                                     Взяти зі складу
                                 </label>
-                                <input class="form-check-input" type="radio" name="action" id="add" value="+" style="margin:0 0 0 50px">
-                                <label class="form-check-label" for="add">
+                                <input class="form-check-input" type="radio" name="action" id="add" value="+" style="margin:0 0 0 50px;">
+                                <label class="form-check-label" for="add" style="font-size: 20px">
                                     Повернути на склад
                                 </label>
                             </div>
