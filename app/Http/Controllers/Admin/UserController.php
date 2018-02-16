@@ -44,7 +44,7 @@ class UserController extends Controller
 
   public function editUserForm($personal_id)
   {         
-    return view('admin.edituser', ['user' => User::where('personal_id', $personal_id)->first()]);
+    return view('admin.edituser', ['user' => User::where('personal_id', $personal_id)->first(), 'loc' => '']);
   }
 
   public function editUser(Request $request)

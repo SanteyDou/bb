@@ -44,6 +44,7 @@
     <div class="form-group">
     <label for="location">Локація</label>   
         <select id="location"  type="text" class="form-control" name="location" value="" required>
+            <option value=""></option>
             <option value="ter">Тернопіль</option>
             <option value="che">Чернівці</option>
             <option value="cho">Чортків</option>

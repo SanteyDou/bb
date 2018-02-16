@@ -88,7 +88,7 @@ class StoreController extends Controller
     public function toOrder($loc)
     {
         $objStorage = Storage::whereRaw('(quantity < min_quantity OR (status IS NOT NULL OR email_send IS NOT NULL OR ebm_started IS NOT NULL)) AND location=?', [$loc])
-                        ->orderBy('place', 'asc')
+                        ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')
                         ->paginate(15);
             // dump($objStorage);
 
@@ -100,7 +100,7 @@ class StoreController extends Controller
         $csvExporter = new \Laracsv\Export();
         $csvExporter->build(Storage::whereRaw('quantity < min_quantity')
                                     ->where('location', $loc)
-                                    ->orderBy('place', 'asc')->get(), ['location', 'place', 'matchcode', 'category.name', 'quantity', 'min_quantity'])->download();       
+                                    ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')->get(), ['location', 'place', 'matchcode', 'category.name', 'quantity', 'min_quantity'])->download();       
     }
 
     public function editToOrderForm($loc, $place)
@@ -128,7 +128,10 @@ class StoreController extends Controller
     public function getCSV($loc)
     {
         $csvExporter = new \Laracsv\Export();
-        $csvExporter->build(Storage::where('location', $loc)->get(), ['place', 'matchcode', 'quantity'])->download();
+        $csvExporter->build(Storage::where('location', $loc)
+                    ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')
+                    ->get(), ['place', 'matchcode', 'quantity'])
+                    ->download();
         
     }
 }

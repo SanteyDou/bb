@@ -15,7 +15,7 @@ class CategoryController extends Controller
 
     public function addCategoryForm()
     {    
-        return view('admin.addcategory');
+        return view('admin.addcategory', ['loc' => '']);
     }
 
     public function addCategory(Request $request)
@@ -39,7 +39,7 @@ class CategoryController extends Controller
     {
       $category = Category::where('id', $id)->first();
 
-      return view('admin.editcategory', ['category' => $category]);      
+      return view('admin.editcategory', ['category' => $category, 'loc' => '']);      
     }
 
     public function editCategory(Request $request)

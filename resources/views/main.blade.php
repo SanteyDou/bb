@@ -27,12 +27,13 @@
     <div class="text-center">
     <form id="" method="GET" action="">
         {{ csrf_field() }}
-        <select id="location_search" type="text" name="location_search" class="form-group{{ $errors->has('personal_id') ? ' has-error' : '' }}" value="" required style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
+        <select id="location_search" type="text" name="location_search" class="form-group{{ $errors->has('personal_id') ? ' has-error' : '' }}" value="" required style="border-radius: 4px; border: 1px solid transparent; padding: 7px 16px; border-color: #ccc; font-size: 17px">
+            <option value=""></option>
             <option value="ter">Тернопіль</option>
             <option value="che">Чернівці</option>
             <option value="cho">Чортків</option>
         </select>
-        <select id="category_id_search" type="text" name="category_id_search" value="{{ old('category') }}" required style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
+        <select id="category_id_search" type="text" name="category_id_search" value="{{ old('category') }}" required style="border-radius: 4px; border: 1px solid transparent; padding: 7px 17px; border-color: #ccc; font-size: 16px">
             @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
@@ -42,7 +43,7 @@
                 <strong>{{ $errors->first('category') }}</strong>
             </span>
         @endif
-        <input type="text" name="matchcode_search" placeholder="матч код" style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
+        <input type="text" name="matchcode_search" placeholder="матч код" style="border-radius: 4px; border: 1px solid transparent; padding: 7px 16px; border-color: #ccc;">
         <a type="" id="main-search" class="btn btn-default">Пошук</a>
     </form>
     </div>
@@ -94,6 +95,7 @@
 
                             <div class="col-md-3">
                                 <select id="location" type="text" class="form-control" name="location" value="{{ old('location') }}" required>
+                                    <option value=""></option>                                
                                     <option value="ter">Тернопіль</option>
                                     <option value="che">Чернівці</option>
                                     <option value="cho">Чортків</option>
