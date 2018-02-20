@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 use App\Storage;
 use App\Category;
@@ -96,11 +97,22 @@ class StoreController extends Controller
     }
 
     public function toOrderGetCSV($loc)
-    {
-        $csvExporter = new \Laracsv\Export();
-        $csvExporter->build(Storage::whereRaw('quantity < min_quantity')
+    {   
+        $data = Storage::whereRaw('quantity < min_quantity')
                                     ->where('location', $loc)
-                                    ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')->get(), ['location', 'place', 'matchcode', 'category.name', 'quantity', 'min_quantity'])->download();       
+                                    ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')
+                                    ->get(['location', 'place', 'matchcode', 'quantity', 'min_quantity']);;
+
+        Excel::create("places", function($excel) use($data) {
+                $excel->sheet('Sheet 1', function($sheet) use($data) {
+                $sheet->fromArray($data);
+            });
+        })->download('xlsx');
+
+        // $csvExporter = new \Laracsv\Export();
+        // $csvExporter->build(Storage::whereRaw('quantity < min_quantity')
+        //                             ->where('location', $loc)
+        //                             ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')->get(), ['location', 'place', 'matchcode', 'category.name', 'quantity', 'min_quantity'])->download();       
     }
 
     public function editToOrderForm($loc, $place)
@@ -127,11 +139,23 @@ class StoreController extends Controller
     
     public function getCSV($loc)
     {
-        $csvExporter = new \Laracsv\Export();
-        $csvExporter->build(Storage::where('location', $loc)
+        $data = Storage::where('location', $loc)
                     ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')
-                    ->get(), ['place', 'matchcode', 'quantity'])
-                    ->download();
+                    ->get(['location', 'place', 'matchcode', 'quantity']);
+
+        $name = date("Y-m-d H:i:s");
+
+        Excel::create($name , function($excel) use($data) {
+                $excel->sheet('Sheet 1', function($sheet) use($data) {
+                $sheet->fromArray($data);
+            });
+        })->download('xlsx');
+
+        // $csvExporter = new \Laracsv\Export();
+        // $csvExporter->build(Storage::where('location', $loc)
+        //             ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')
+        //             ->get(), ['place', 'matchcode', 'quantity'])
+        //             ->download();
         
     }
 }
