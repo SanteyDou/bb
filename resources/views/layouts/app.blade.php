@@ -12,6 +12,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<<<<<<< HEAD
+=======
+    <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
+
+    @yield('style')
+    
+>>>>>>> v1.0
 </head>
 <body>
     <div id="app">
@@ -31,6 +38,10 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
+<<<<<<< HEAD
+=======
+
+>>>>>>> v1.0
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -43,9 +54,20 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
+<<<<<<< HEAD
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <!-- <li><a href="{{ route('register') }}">Register</a></li> -->
                         @else
+=======
+
+                            <li><a href="{{ route('login') }}">Вхід</a></li>
+                            {{-- <li><a href="{{ route('register') }}">Реєстрація</a></li> --}}
+                        @else
+                            @if ( Auth::user()->is_admin )
+                                <li><a href="{{ route('admin') }}" >Адмінка</a></li>
+                            @endif
+
+>>>>>>> v1.0
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -56,8 +78,15 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
+<<<<<<< HEAD
                                             Logout
                                         </a>
+=======
+
+                                            Вихід
+                                        </a>                                        
+
+>>>>>>> v1.0
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
@@ -72,9 +101,23 @@
         </nav>
 
         @yield('content')
+<<<<<<< HEAD
+=======
+
+>>>>>>> v1.0
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+<<<<<<< HEAD
+=======
+
+    <script  src="{{ asset('js/jquery-1.12.4.js') }}"></script>
+    <script  src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script defer src="{{ asset('js/font-awesome.js') }}"></script>
+
+    @yield('scripts')
+
+>>>>>>> v1.0
 </body>
 </html>
