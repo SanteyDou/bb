@@ -11,15 +11,6 @@
 |
 */
 
-<<<<<<< HEAD
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-=======
 Route::get('/', 'StoreController@index')->name('main');
 Route::post('/add', 'StoreController@store')->name('main.post');
 
@@ -66,4 +57,3 @@ Route::prefix('admin')->group(function () {
     Route::get('/{loc}/logs/getcsv', 'Admin\LogController@getCSV')->middleware(['auth', 'admin'])->name('admin.logs.getCSV');
     
 });
->>>>>>> v1.0
