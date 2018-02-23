@@ -162,7 +162,7 @@
                             </div>                           
 
                             <div class="col-md-2" style="margin: 0 -10px 0 0">
-                                <input id="quantity" type="text" name="quantity" class="form-control text-center font-weight-bold" value="" style="font-size: 26px; padding: 0" required>
+                                <input id="quantity" type="number" name="quantity" min="1" class="form-control text-center font-weight-bold" value="" style="font-size: 26px; padding: 0" required>
                                 @if ($errors->has('quantity'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('quantity') }}</strong>
