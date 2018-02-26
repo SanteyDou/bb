@@ -14,9 +14,10 @@
     <input type="hidden" name="location" value="{{ $loc }}">
     <input type="hidden" name="personal_id" value="{{ Auth::user()->personal_id }}">
     <input type="hidden" name="action" value="+">
+    <input type="hidden" name="place" value="{{ $storage->place }}" required>
     <div class="form-group">
       <label for="place">Місце на складі</label>
-      <input type="text" class="form-control" name="place" placeholder="{{ $storage->place }}" required disabled>
+      <input type="text" class="form-control" name="place_new" value="{{ $storage->place }}" required>
     </div>
     <div class="form-group">
       <label for="matchcode">Матч-код</label>

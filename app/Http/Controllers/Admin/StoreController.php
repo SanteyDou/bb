@@ -80,6 +80,7 @@ class StoreController extends Controller
         }
 
         $place->update(['matchcode' => $request->matchcode,
+                      'place' => $request->place_new,
                       'category_id' => $request->category_id,
                       'min_quantity' => $request->min_quantity]);
     
