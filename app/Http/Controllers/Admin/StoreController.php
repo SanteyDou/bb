@@ -65,18 +65,20 @@ class StoreController extends Controller
         return view('admin.editplace', ['loc' => $loc, 
                                        'storage' => Storage::where(['place' => $place, 'location' => $loc])->first(),
                                        'categories' => Category::orderBy('id', 'asc')->get(), 
-                                       'message' => null, 
-                                       'error' => null]);
+                                       'message' => '', 
+                                       'error' => '']);
     }
 
     public function editPlace(Request $request)
     {
         $place = Storage::where(['place' => $request->place, 'location' => $request->location])->first();
 
-        if($place->matchcode != $request->matchcode && $place->quantity != 0){
-            return view('admin.index', ['message' => null, 'error' => 'Для редагування місце повинно бути порожнім']);
-        }elseif ($place->category_id != $request->category_id && $place->quantity != 0){
-            return view('admin.index', ['message' => null, 'error' => 'Для редагування місце повинно бути порожнім']);
+        if($place->quantity != 0){
+            return view('admin.editplace', ['loc' => $request->location, 
+                                       'storage' => Storage::where(['place' => $request->place, 'location' => $request->location])->first(),
+                                       'categories' => Category::orderBy('id', 'asc')->get(), 
+                                       'message' => '', 
+                                       'error' => 'Для редагування місце повинно бути порожнім']);
         }
 
         $place->update(['matchcode' => $request->matchcode,
