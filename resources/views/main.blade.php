@@ -92,9 +92,9 @@
 
                             <label for="location" class="col-md-2 control-label">Локація</label>
 
-                            <div class="col-md-3">
+                            <div id="select_location" class="col-md-3 has-error">
                                 <select id="location" type="text" class="form-control" name="location" value="{{ old('location') }}" required>
-                                    <option value=""></option>                                
+                                    <option value="none">Не вибрано</option>                                
                                     <option value="ter">Тернопіль</option>
                                     <option value="che">Чернівці</option>
                                     <option value="cho">Чортків</option>
@@ -264,11 +264,14 @@
                 success:function(data){
                     $("select[name=location]").val(data.location);
                     $('#personal_id').removeClass('has-error');
+                    $('#select_location').removeClass('has-error');
                 },
 
                 error:function(data){
                     $("input[name=personal_id]").val('');
+                    $("select[name=location]").val('none');
                     $('#personal_id').addClass('has-error');
+                    $('#select_location').addClass('has-error');
                 }
 
             });
