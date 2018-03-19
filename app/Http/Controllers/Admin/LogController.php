@@ -55,6 +55,7 @@ class LogController extends Controller
     public function getCSV($loc)
     {
         $data = Log::where('location', $loc)
+                    ->orderBy('created_at', 'desc')
                     ->get(['location', 'personal_id', 'action', 'quantity', 'place', 'matchcode', 'category', 'created_at']);
 
         $name = "Log_" . date("Y-m-d H:i:s");
