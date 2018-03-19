@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+
 use App\Log;
 use App\Category;
 
@@ -52,8 +54,16 @@ class LogController extends Controller
 
     public function getCSV($loc)
     {
-        $csvExporter = new \Laracsv\Export();
-        $csvExporter->build(Log::orderBy('created_at', 'desc')->get(), ['personal_id', 'action', 'place', 'matchcode', 'category', 'quantity', 'created_at'])->download();
+        $data = Log::where('location', $loc)
+                    ->get(['location', 'personal_id', 'action', 'quantity', 'place', 'matchcode', 'category', 'created_at']);
+
+        $name = "Log_" . date("Y-m-d H:i:s");
+
+        Excel::create($name , function($excel) use($data) {
+                $excel->sheet('Sheet 1', function($sheet) use($data) {
+                $sheet->fromArray($data);
+            });
+        })->download('xlsx');
         
     }
 

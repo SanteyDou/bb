@@ -51,7 +51,9 @@
         <div class="text-right">
           {{ $logs->links() }}
         </div> 
-        {{-- <a class="btn btn-info" href="{{ route('admin')}}/logs/getcsv">Завантажити Excel</a> --}}
+
+        <a class="btn btn-info" href="{{ route('admin')}}/{{ $loc }}/logs/getcsv">Завантажити логи</a>
+
       </div>
     </div>
 

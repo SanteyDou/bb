@@ -146,7 +146,7 @@ class StoreController extends Controller
                     ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')
                     ->get(['location', 'place', 'matchcode', 'quantity']);
 
-        $name = date("Y-m-d H:i:s");
+        $name = $loc . '_' . date("Y-m-d H:i:s");
 
         Excel::create($name , function($excel) use($data) {
                 $excel->sheet('Sheet 1', function($sheet) use($data) {
