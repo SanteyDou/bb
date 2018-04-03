@@ -81,7 +81,7 @@
                             <label for="personal_id" class="col-md-3 control-label">Табельний номер</label>
 
                             <div class="col-md-2">
-                                <input id="personal_id" type="text" class="form-control" name="personal_id" value="{{ old('personal_id') }}" placeholder="S12345" required autofocus>
+                                <input id="personal_id" type="text" class="form-control" name="personal_id" value="" placeholder="S12345" required autofocus>
 
                                 @if ($errors->has('personal_id'))
                                     <span class="help-block">
@@ -93,7 +93,7 @@
                             <label for="location" class="col-md-2 control-label">Локація</label>
 
                             <div id="select_location" class="col-md-3 has-error">
-                                <select id="location" type="text" class="form-control" name="location" value="{{ old('location') }}" required>
+                                <select id="location" type="text" class="form-control" name="location" value="" required>
                                     <option value="none">Не вибрано</option>                                
                                     <option value="ter">Тернопіль</option>
                                     <option value="che">Чернівці</option>
@@ -123,7 +123,7 @@
                         <div id="category" class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
                         <label for="category_id" class="col-md-3 control-label">Категорія</label>
                             <div class="col-md-7">
-                                <select id="category_id" type="text" class="form-control" name="category_id" value="{{ old('category') }}" required>
+                                <select id="category_id" type="text" class="form-control" name="category_id" value="" required>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
@@ -140,7 +140,7 @@
                             <label for="matchcode" class="col-md-3 control-label">Матч код</label>
 
                             <div class="col-md-7">
-                                <input id="matchcode" type="text" class="form-control" name="matchcode" value="{{ old('matchcode') }}" required>
+                                <input id="matchcode" type="text" class="form-control" name="matchcode" value="" required>
                             </div>
                             {{-- <div class="col-md-2">
                                 <button id="search" type="button" class="btn btn-default form-control">
