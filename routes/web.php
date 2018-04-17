@@ -41,7 +41,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/cat/edit/{id}', 'Admin\CategoryController@editCategory')->middleware(['auth', 'admin'])->name('admin.catEdit');
 
     Route::get('/{loc}', 'Admin\StoreController@storeByLocation')->middleware(['auth', 'admin'])->name('admin.store');
-    Route::post('/{loc}/search', 'Admin\StoreController@storeByMatchcode')->middleware(['auth', 'admin'])->name('admin.search');
+    Route::post('/{loc}/search', 'Admin\StoreController@storeSearch')->middleware(['auth', 'admin'])->name('admin.search');
     Route::get('/{loc}/add', 'Admin\StoreController@addPlaceForm')->middleware(['auth', 'admin'])->name('admin.addForm');
     Route::post('/{loc}/add', 'Admin\StoreController@addPlace')->middleware(['auth', 'admin'])->name('admin.add');
     Route::get('/{loc}/edit/{place}', 'Admin\StoreController@editPlaceForm')->middleware(['auth', 'admin'])->name('admin.editForm');

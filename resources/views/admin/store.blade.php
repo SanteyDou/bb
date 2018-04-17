@@ -9,6 +9,9 @@
 
       <form method="POST" action="{{ route('admin') }}/{{ $loc }}/search">
         {{ csrf_field() }}
+        <input type="hidden" name="location" value="{{ $loc }}">
+        <input type="text" name="place" placeholder="місце" style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
+        або
         <input type="text" name="matchcode" placeholder="матчкод" style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
         <button type="submit" class="btn btn-default">Пошук</button>
         

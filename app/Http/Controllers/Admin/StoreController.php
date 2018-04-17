@@ -27,22 +27,48 @@ class StoreController extends Controller
             return view('admin.store', ['loc' => $loc, 'objStorage' => $objStorage]);
         };
 
-        return view('admin.index');
+        return $this->index();
     }
 
-    public function storeByMatchcode($loc, Request $request)
-    {        
+    public function storeSearch($loc, Request $request)
+    {       
+        $place = $request->input('place');
+        $matchcode = $request->input('matchcode');
+        
         if (in_array($loc, ['ter', 'che', 'cho'])) {
-            $objStorage = Storage::where('location', $loc)
-                        ->whereRaw('matchcode LIKE ?', ["%".request()->matchcode."%"])         
-                        ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc') 
-                        ->paginate(15);
-            // dump($objStorage);
-            return view('admin.store', ['loc' => $loc, 'objStorage' => $objStorage]);
+            if($place) {
+                $objStorage = Storage::where('location', $loc)
+                            ->whereRaw('place LIKE ?', ["%".$place."%"])         
+                            ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc') 
+                            ->paginate(15);
+                // dump($objStorage);
+                return view('admin.store', ['loc' => $loc, 'objStorage' => $objStorage]);
+            } elseif($matchcode) {
+                $objStorage = Storage::where('location', $loc)
+                            ->whereRaw('matchcode LIKE ?', ["%".$matchcode."%"])         
+                            ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc') 
+                            ->paginate(15);
+                // dump($objStorage);
+                return view('admin.store', ['loc' => $loc, 'objStorage' => $objStorage]);
+            }
         };
 
-        return view('admin.index');
+        return $this->storeByLocation($loc);
     }
+
+    // public function storeByPlace($loc, Request $request)
+    // {        
+    //     if (in_array($loc, ['ter', 'che', 'cho'])) {
+    //         $objStorage = Storage::where('location', $loc)
+    //                     ->whereRaw('place', request()->place)
+    //                     ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc') 
+    //                     ->paginate(15);
+    //         // dump($objStorage);
+    //         return view('admin.store', ['loc' => $loc, 'objStorage' => $objStorage]);
+    //     };
+
+    //     return view('admin.index');
+    // }
 
     public function addPlaceForm($loc)
     {
@@ -137,7 +163,7 @@ class StoreController extends Controller
                       'email_send' => $request->email_send,
                       'ebm_started' => $request->ebm_started]);
     
-        return $this->toOrder($request->location);
+        return redirect()->route('admin.toorder', ['loc' => $request->location]);
     }
     
     public function getCSV($loc)
