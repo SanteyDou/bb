@@ -53,7 +53,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/{loc}/editorder/{place}', 'Admin\StoreController@editToOrder')->middleware(['auth', 'admin'])->name('admin.editOrder');
 
     Route::get('/{loc}/logs', 'Admin\LogController@logs')->middleware(['auth', 'admin'])->name('admin.logs');
-    Route::post('/{loc}/logs/search', 'Admin\LogController@logsSearch')->middleware(['auth', 'admin'])->name('admin.logsSearch');
+    Route::post('/{loc}/logs', 'Admin\LogController@logsSearch')->middleware(['auth', 'admin'])->name('admin.logsSearch');
     Route::get('/{loc}/logs/getcsv', 'Admin\LogController@getCSV')->middleware(['auth', 'admin'])->name('admin.logs.getCSV');
     
 });
