@@ -7,7 +7,7 @@
 
     <div class="text-right" style="margin: -42px 20px 0 0">
 
-      <form method="POST" action="{{ route('admin') }}/{{ $loc }}/search">
+      <form method="POST" action="{{ route('admin') }}/{{ $loc }}">
         {{ csrf_field() }}
         <input type="hidden" name="location" value="{{ $loc }}">
         <input type="text" name="place" placeholder="місце" style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
