@@ -11,14 +11,14 @@ use App\Category;
 
 class LogController extends Controller
 {    
-    public function logs($loc)
-    {
-        $logs = Log::where('location', $loc)
-                    ->orderBy('created_at', 'desc')
-                    ->paginate(15);
+    // public function logs($loc)
+    // {
+    //     $logs = Log::where('location', $loc)
+    //                 ->orderBy('created_at', 'desc')
+    //                 ->paginate(15);
 
-        return view('admin.logs', ['loc' => $loc, 'logs' => $logs]);
-    }
+    //     return view('admin.logs', ['loc' => $loc, 'logs' => $logs]);
+    // }
 
     static public function logStoreAction($data)
     {
@@ -38,18 +38,20 @@ class LogController extends Controller
 
     }
 
-    public function logsSearch(Request $request, $loc)
+    public function logs($loc, Request $request)
     {
-        $logs = Log::where('location', $loc)
-                    ->where('place', $request->place)
-                    ->orderBy('created_at', 'desc')
-                    ->paginate(15);
-
-        if(!$request->place) {
-            return $this->logs($loc);
+        if($request->place) {
+            $logs = Log::where('location', $loc)
+                        ->where('place', $request->place)
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(15);
+        }else {
+            $logs = Log::where('location', $loc)
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(15);
         }
 
-        return view('admin.logs', ['logs' => $logs, 'loc' => $loc]);
+        return view('admin.logs', ['logs' => $logs, 'loc' => $loc, 'place' => (string) $request->place]);
     }
 
     public function getCSV($loc)
