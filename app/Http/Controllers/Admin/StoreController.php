@@ -77,6 +77,12 @@ class StoreController extends Controller
 
     public function addPlace(Request $request)
     {
+        $check = Storage::where('location', $request->location)->where('place', $request->place)->first();
+
+        if($check != null){
+            return view('admin.addplace', ['loc' => $request->input('location'), 'categories' => Category::orderBy('id', 'asc')->get(), 'message' => null, 'error' => 'На даному складі вже є місце з таким номером']);
+        }
+        
         $objStorage = Storage::create($request->input());
 
         if ($request->input('quantity')){
