@@ -17,7 +17,7 @@ class StoreController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'personal_id' => 'required|regex:/(^S+\d{5})/|max:6',
+            'personal_id' => 'required|regex:/(^[S,s]+\d{5})/|max:6',
             'quantity' => 'required|integer',
         ]);
 
