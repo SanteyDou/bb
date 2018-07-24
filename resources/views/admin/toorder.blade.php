@@ -47,7 +47,7 @@
         <div class="text-right">
           {{ $objStorage->links() }}
         </div>
-        {{-- <a class="btn btn-info" href="{{ route('admin')}}/toorder/getcsv">Завантажити Excel</a> --}}
+        <a class="btn btn-info" href="{{ route('admin')}}/{{ $loc }}/toorder/getcsv">Завантажити Excel</a>
       </div>
     </div>
 
