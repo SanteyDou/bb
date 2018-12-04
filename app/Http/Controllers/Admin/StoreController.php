@@ -19,7 +19,7 @@ class StoreController extends Controller
 
     public function storeByLocation($loc)
     {        
-        if (in_array($loc, ['ter', 'che', 'cho'])) {
+        if (in_array($loc, ['ter', 'che', 'cho', 'khm'])) {
             $objStorage = Storage::where('location', $loc)         
                         ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')                        
                         ->paginate(15);
@@ -35,7 +35,7 @@ class StoreController extends Controller
         $place = $request->input('place');
         $matchcode = $request->input('matchcode');
         
-        if (in_array($loc, ['ter', 'che', 'cho'])) {
+        if (in_array($loc, ['ter', 'che', 'cho', 'khm'])) {
             if($place) {
                 $objStorage = Storage::where('location', $loc)
                             ->whereRaw('place LIKE ?', ["%".$place."%"])         

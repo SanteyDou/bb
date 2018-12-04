@@ -113,7 +113,37 @@
                       </table>
                   </div> 
                 </div>           
-              </div>   
+              </div>  
+
+              <div class="panel">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#khm">
+                      Хмельницький</a>
+                  </h4>
+                </div>
+                <div id="khm" class="panel-collapse collapse {{ ($loc == 'khm') ? 'in' : '' }}">
+                  <div class="panel-body">
+                      <table class="table">
+                          <tr>
+                              <td>
+                                  <a href="{{ route('admin') }}/khm">Склад</a>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <a href="{{ route('admin') }}/khm/toorder">Дозамовити</a>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <a href="{{ route('admin') }}/khm/logs">Логи</a>
+                              </td>
+                          </tr>
+                      </table>
+                  </div> 
+                </div>           
+              </div>  
 
 
             </div>

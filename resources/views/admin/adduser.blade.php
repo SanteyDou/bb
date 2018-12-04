@@ -48,6 +48,7 @@
         <option value="ter">Тернопіль</option>
         <option value="che">Чернівці</option>
         <option value="cho">Чортків</option>
+        <option value="khm">Хмельницький</option>        
     </select>
     </div>
 

@@ -32,6 +32,7 @@
             <option value="ter">Тернопіль</option>
             <option value="che">Чернівці</option>
             <option value="cho">Чортків</option>
+            <option value="khm">Хмельницький</option>
         </select>
         <select id="category_id_search" type="text" name="category_id_search" value="{{ old('category') }}" required style="border-radius: 4px; border: 1px solid transparent; padding: 7px 17px; border-color: #ccc; font-size: 16px">
             @foreach ($categories as $category)
@@ -98,6 +99,7 @@
                                     <option value="ter">Тернопіль</option>
                                     <option value="che">Чернівці</option>
                                     <option value="cho">Чортків</option>
+                                    <option value="khm">Хмельницький</option>
                                 </select>    
                                 @if ($errors->has('location'))
                                     <span class="help-block">
