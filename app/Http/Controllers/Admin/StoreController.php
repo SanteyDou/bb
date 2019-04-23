@@ -19,7 +19,7 @@ class StoreController extends Controller
 
     public function storeByLocation($loc)
     {        
-        if (in_array($loc, ['ter', 'che', 'cho'])) {
+        if (in_array($loc, ['ter', 'che', 'cho', 'khm'])) {
             $objStorage = Storage::where('location', $loc)         
                         ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')                        
                         ->paginate(15);
@@ -27,22 +27,48 @@ class StoreController extends Controller
             return view('admin.store', ['loc' => $loc, 'objStorage' => $objStorage]);
         };
 
-        return view('admin.index');
+        return $this->index();
     }
 
-    public function storeByMatchcode($loc, Request $request)
-    {        
-        if (in_array($loc, ['ter', 'che', 'cho'])) {
-            $objStorage = Storage::where('location', $loc)
-                        ->whereRaw('matchcode LIKE ?', ["%".request()->matchcode."%"])         
-                        ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc') 
-                        ->paginate(15);
-            // dump($objStorage);
-            return view('admin.store', ['loc' => $loc, 'objStorage' => $objStorage]);
+    public function storeSearch($loc, Request $request)
+    {       
+        $place = $request->input('place');
+        $matchcode = $request->input('matchcode');
+        
+        if (in_array($loc, ['ter', 'che', 'cho', 'khm'])) {
+            if($place) {
+                $objStorage = Storage::where('location', $loc)
+                            ->whereRaw('place LIKE ?', ["%".$place."%"])         
+                            ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc') 
+                            ->paginate(15);
+                // dump($objStorage);
+                return view('admin.store', ['loc' => $loc, 'objStorage' => $objStorage]);
+            } elseif($matchcode) {
+                $objStorage = Storage::where('location', $loc)
+                            ->whereRaw('matchcode LIKE ?', ["%".$matchcode."%"])         
+                            ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc') 
+                            ->paginate(15);
+                // dump($objStorage);
+                return view('admin.store', ['loc' => $loc, 'objStorage' => $objStorage]);
+            }
         };
 
-        return view('admin.index');
+        return $this->storeByLocation($loc);
     }
+
+    // public function storeByPlace($loc, Request $request)
+    // {        
+    //     if (in_array($loc, ['ter', 'che', 'cho'])) {
+    //         $objStorage = Storage::where('location', $loc)
+    //                     ->whereRaw('place', request()->place)
+    //                     ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc') 
+    //                     ->paginate(15);
+    //         // dump($objStorage);
+    //         return view('admin.store', ['loc' => $loc, 'objStorage' => $objStorage]);
+    //     };
+
+    //     return view('admin.index');
+    // }
 
     public function addPlaceForm($loc)
     {
@@ -51,6 +77,12 @@ class StoreController extends Controller
 
     public function addPlace(Request $request)
     {
+        $check = Storage::where('location', $request->location)->where('place', $request->place)->first();
+
+        if($check != null){
+            return view('admin.addplace', ['loc' => $request->input('location'), 'categories' => Category::orderBy('id', 'asc')->get(), 'message' => null, 'error' => 'На даному складі вже є місце з таким номером']);
+        }
+        
         $objStorage = Storage::create($request->input());
 
         if ($request->input('quantity')){
@@ -65,21 +97,24 @@ class StoreController extends Controller
         return view('admin.editplace', ['loc' => $loc, 
                                        'storage' => Storage::where(['place' => $place, 'location' => $loc])->first(),
                                        'categories' => Category::orderBy('id', 'asc')->get(), 
-                                       'message' => null, 
-                                       'error' => null]);
+                                       'message' => '', 
+                                       'error' => '']);
     }
 
     public function editPlace(Request $request)
     {
         $place = Storage::where(['place' => $request->place, 'location' => $request->location])->first();
 
-        if($place->matchcode != $request->matchcode && $place->quantity != 0){
-            return view('admin.index', ['message' => null, 'error' => 'Для редагування місце повинно бути порожнім']);
-        }elseif ($place->category_id != $request->category_id && $place->quantity != 0){
-            return view('admin.index', ['message' => null, 'error' => 'Для редагування місце повинно бути порожнім']);
+        if($place->quantity != 0){
+            return view('admin.editplace', ['loc' => $request->location, 
+                                       'storage' => Storage::where(['place' => $request->place, 'location' => $request->location])->first(),
+                                       'categories' => Category::orderBy('id', 'asc')->get(), 
+                                       'message' => '', 
+                                       'error' => 'Для редагування місце повинно бути порожнім']);
         }
 
         $place->update(['matchcode' => $request->matchcode,
+                      'place' => $request->place_new,
                       'category_id' => $request->category_id,
                       'min_quantity' => $request->min_quantity]);
     
@@ -134,7 +169,25 @@ class StoreController extends Controller
                       'email_send' => $request->email_send,
                       'ebm_started' => $request->ebm_started]);
     
-        return $this->toOrder($request->location);
+        return redirect()->route('admin.toorder', ['loc' => $request->location]);
+    }
+
+    public function eraseToOrderComment($loc, $place){
+
+        // dump($loc, $place);
+        
+        $place = Storage::where(['place' => $place, 'location' => $loc])->first();
+
+        $place->update(['status' => NULL,
+                        'email_send' => NULL,
+                        'ebm_started' => NULL]);
+
+        $objStorage = Storage::whereRaw('(quantity < min_quantity OR (status IS NOT NULL OR email_send IS NOT NULL OR ebm_started IS NOT NULL)) AND location=?', [$loc])
+        ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')
+        ->paginate(15);
+
+        return view('admin.toorder', ['objStorage' => $objStorage, 'loc' => $loc]);        
+    
     }
     
     public function getCSV($loc)
@@ -143,7 +196,7 @@ class StoreController extends Controller
                     ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')
                     ->get(['location', 'place', 'matchcode', 'quantity']);
 
-        $name = date("Y-m-d H:i:s");
+        $name = $loc . '_' . date("Y-m-d H:i:s");
 
         Excel::create($name , function($excel) use($data) {
                 $excel->sheet('Sheet 1', function($sheet) use($data) {

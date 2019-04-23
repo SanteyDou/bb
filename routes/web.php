@@ -50,7 +50,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/cat/edit/{id}', 'Admin\CategoryController@editCategory')->middleware(['auth', 'admin'])->name('admin.catEdit');
 
     Route::get('/{loc}', 'Admin\StoreController@storeByLocation')->middleware(['auth', 'admin'])->name('admin.store');
-    Route::post('/{loc}/search', 'Admin\StoreController@storeByMatchcode')->middleware(['auth', 'admin'])->name('admin.search');
+    Route::post('/{loc}', 'Admin\StoreController@storeSearch')->middleware(['auth', 'admin'])->name('admin.search');
     Route::get('/{loc}/add', 'Admin\StoreController@addPlaceForm')->middleware(['auth', 'admin'])->name('admin.addForm');
     Route::post('/{loc}/add', 'Admin\StoreController@addPlace')->middleware(['auth', 'admin'])->name('admin.add');
     Route::get('/{loc}/edit/{place}', 'Admin\StoreController@editPlaceForm')->middleware(['auth', 'admin'])->name('admin.editForm');
@@ -60,9 +60,10 @@ Route::prefix('admin')->group(function () {
     Route::get('/{loc}/toorder/getcsv', 'Admin\StoreController@toOrderGetCSV')->middleware(['auth', 'admin'])->name('admin.toorder.getcsv');
     Route::get('/{loc}/editorder/{place}', 'Admin\StoreController@editToOrderForm')->middleware(['auth', 'admin'])->name('admin.editOrderForm');
     Route::post('/{loc}/editorder/{place}', 'Admin\StoreController@editToOrder')->middleware(['auth', 'admin'])->name('admin.editOrder');
+    Route::get('/{loc}/eraseordercomments/{place}', 'Admin\StoreController@eraseToOrderComment')->middleware(['auth', 'admin'])->name('admin.eraseOrderComment');
 
     Route::get('/{loc}/logs', 'Admin\LogController@logs')->middleware(['auth', 'admin'])->name('admin.logs');
-    Route::post('/{loc}/logs/search', 'Admin\LogController@logsSearch')->middleware(['auth', 'admin'])->name('admin.logsSearch');
+    // Route::post('/{loc}/logs', 'Admin\LogController@logsSearch')->middleware(['auth', 'admin'])->name('admin.logsSearch');
     Route::get('/{loc}/logs/getcsv', 'Admin\LogController@getCSV')->middleware(['auth', 'admin'])->name('admin.logs.getCSV');
     
 });

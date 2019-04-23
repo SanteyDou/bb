@@ -32,6 +32,7 @@
             <option value="ter">Тернопіль</option>
             <option value="che">Чернівці</option>
             <option value="cho">Чортків</option>
+            <option value="khm">Хмельницький</option>
         </select>
         <select id="category_id_search" type="text" name="category_id_search" value="{{ old('category') }}" required style="border-radius: 4px; border: 1px solid transparent; padding: 7px 17px; border-color: #ccc; font-size: 16px">
             @foreach ($categories as $category)
@@ -68,7 +69,6 @@
         </table>
 
     </div>
-    <br/>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -82,7 +82,7 @@
                             <label for="personal_id" class="col-md-3 control-label">Табельний номер</label>
 
                             <div class="col-md-2">
-                                <input id="personal_id" type="text" class="form-control" name="personal_id" value="{{ old('personal_id') }}" placeholder="S12345" required autofocus>
+                                <input id="personal_id" type="text" class="form-control" name="personal_id" value="" placeholder="S12345" required autofocus>
 
                                 @if ($errors->has('personal_id'))
                                     <span class="help-block">
@@ -93,12 +93,13 @@
 
                             <label for="location" class="col-md-2 control-label">Локація</label>
 
-                            <div class="col-md-3">
-                                <select id="location" type="text" class="form-control" name="location" value="{{ old('location') }}" required>
-                                    <option value=""></option>                                
+                            <div id="select_location" class="col-md-3 has-error">
+                                <select id="location" type="text" class="form-control" name="location" value="" required>
+                                    <option value="none">Не вибрано</option>                                
                                     <option value="ter">Тернопіль</option>
                                     <option value="che">Чернівці</option>
                                     <option value="cho">Чортків</option>
+                                    <option value="khm">Хмельницький</option>
                                 </select>    
                                 @if ($errors->has('location'))
                                     <span class="help-block">
@@ -108,7 +109,6 @@
 
                             </div>
                         </div>
-                        <br/>
                         <div id="place" class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
                             <label for="place" class="col-md-3 control-label">Місце</label>
 
@@ -122,11 +122,10 @@
                                 @endif
                             </div>
                         </div>
-                        <br/>
                         <div id="category" class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
                         <label for="category_id" class="col-md-3 control-label">Категорія</label>
                             <div class="col-md-7">
-                                <select id="category_id" type="text" class="form-control" name="category_id" value="{{ old('category') }}" required>
+                                <select id="category_id" type="text" class="form-control" name="category_id" value="" required>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
@@ -139,12 +138,11 @@
 
                             </div>
                         </div>
-                        <br/> 
                         <div id="matchcode" class="form-group{{ $errors->has('matchcode') ? ' has-error' : '' }}">
                             <label for="matchcode" class="col-md-3 control-label">Матч код</label>
 
                             <div class="col-md-7">
-                                <input id="matchcode" type="text" class="form-control" name="matchcode" value="{{ old('matchcode') }}" required>
+                                <input id="matchcode" type="text" class="form-control" name="matchcode" value="" required>
                             </div>
                             {{-- <div class="col-md-2">
                                 <button id="search" type="button" class="btn btn-default form-control">
@@ -152,7 +150,6 @@
                                 </button>
                             </div> --}}
                         </div>
-                        <br/>
                         <div class="form-group{{ $errors->has('quantity') ? ' has-error' : '' }}">
                             
                             <label for="quantity" class="col-md-3 control-label" style="margin: 0 -10px 0 0">Кількість</label>
@@ -162,7 +159,7 @@
                             </div>                           
 
                             <div class="col-md-2" style="margin: 0 -10px 0 0">
-                                <input id="quantity" type="text" name="quantity" class="form-control text-center font-weight-bold" value="" style="font-size: 26px; padding: 0" required>
+                                <input id="quantity" type="number" name="quantity" min="1" class="form-control text-center font-weight-bold" value="" style="font-size: 26px; padding: 0" required>
                                 @if ($errors->has('quantity'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('quantity') }}</strong>
@@ -269,11 +266,14 @@
                 success:function(data){
                     $("select[name=location]").val(data.location);
                     $('#personal_id').removeClass('has-error');
+                    $('#select_location').removeClass('has-error');
                 },
 
                 error:function(data){
                     $("input[name=personal_id]").val('');
+                    $("select[name=location]").val('none');
                     $('#personal_id').addClass('has-error');
+                    $('#select_location').addClass('has-error');
                 }
 
             });
