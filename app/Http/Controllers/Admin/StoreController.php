@@ -106,11 +106,13 @@ class StoreController extends Controller
         $place = Storage::where(['place' => $request->place, 'location' => $request->location])->first();
 
         if($place->quantity != 0){
+            // if($place->place != $request->place_new or $place->matchcode != $request->matchcode or $place->category_id != $request->category_id){
             return view('admin.editplace', ['loc' => $request->location, 
                                        'storage' => Storage::where(['place' => $request->place, 'location' => $request->location])->first(),
                                        'categories' => Category::orderBy('id', 'asc')->get(), 
                                        'message' => '', 
-                                       'error' => 'Для редагування місце повинно бути порожнім']);
+                                       'error' => 'Для редагування цого поля місце повинно бути порожнім']);
+            // }
         }
 
         $place->update(['matchcode' => $request->matchcode,
@@ -170,6 +172,24 @@ class StoreController extends Controller
                       'ebm_started' => $request->ebm_started]);
     
         return redirect()->route('admin.toorder', ['loc' => $request->location]);
+    }
+
+    public function eraseToOrderComment($loc, $place){
+
+        // dump($loc, $place);
+        
+        $place = Storage::where(['place' => $place, 'location' => $loc])->first();
+
+        $place->update(['status' => NULL,
+                        'email_send' => NULL,
+                        'ebm_started' => NULL]);
+
+        $objStorage = Storage::whereRaw('(quantity < min_quantity OR (status IS NOT NULL OR email_send IS NOT NULL OR ebm_started IS NOT NULL)) AND location=?', [$loc])
+        ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')
+        ->paginate(15);
+
+        return view('admin.toorder', ['objStorage' => $objStorage, 'loc' => $loc]);        
+    
     }
     
     public function getCSV($loc)

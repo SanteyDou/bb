@@ -35,8 +35,11 @@
               <td>{{ $storage->email_send }}</td>
               <td>{{ $storage->ebm_started }}</td>
               <td class="text-center">
-                <a class="btn btn-success" href="{{ route('admin') }}/{{ $loc }}/editorder/{{ $storage->place }}">
+                <a class="btn btn-success" href="{{ route('admin') }}/{{ $loc }}/editorder/{{ $storage->place }}" title="Редагувати коментарі">
                   <i class="fas fa-edit"></i>
+                </a>
+                <a class="btn btn-warning eraser" href="{{ route('admin') }}/{{ $loc }}/eraseordercomments/{{ $storage->place }}" title="Видалити коментарі">
+                  <i class="fas fa-eraser"></i>
                 </a>
               </td>
             </tr>
@@ -54,8 +57,12 @@
 
 @endsection
 
-@section('script')
+@section('scripts')
 
-
+<script>
+    $('.eraser').click(function(){
+        return confirm('Ви дійсно хочете видалити коментарі до цього місця?');
+    });
+</script>
 
 @endsection

@@ -25,7 +25,7 @@
           <td>{{ $category->name }}</td>
          
           <td class="text-center">
-            <a class="btn btn-success" href="{{ route('admin.cat') }}/edit/{{ $category->id }}">
+            <a class="btn btn-success" href="{{ route('admin.cat') }}/edit/{{ $category->id }} title='Редагувати категорію'">
               <i class="fas fa-edit"></i>
             </a>
           </td>
