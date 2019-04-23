@@ -15,7 +15,7 @@
         <input type="text" name="matchcode" placeholder="матчкод" style="border-radius: 4px; border: 1px solid transparent; padding: 6px 16px; border-color: #ccc;">
         <button type="submit" class="btn btn-default">Пошук</button>
         
-        <a class="btn btn-primary" style="margin: 0 0 0 50px" href="{{ route('admin') }}/{{ $loc }}/add"><i class="fas fa-cart-plus"></i></a>
+        <a class="btn btn-primary" style="margin: 0 0 0 50px" href="{{ route('admin') }}/{{ $loc }}/add"><i class="fas fa-cart-plus" title="Створити місце"></i></a>
       </form>
 
     </div>
@@ -41,7 +41,7 @@
               <td>{{ $storage->quantity }}</td>
               <td>{{ $storage->min_quantity }}</td>
               <td class="text-center">
-                <a class="btn btn-success" href="{{ route('admin') }}/{{ $loc }}/edit/{{ $storage->place }}">
+                <a class="btn btn-success" href="{{ route('admin') }}/{{ $loc }}/edit/{{ $storage->place }}" title="Редагувати місце">
                   <i class="fas fa-edit"></i>
                 </a>
               </td>

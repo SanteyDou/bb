@@ -171,6 +171,24 @@ class StoreController extends Controller
     
         return redirect()->route('admin.toorder', ['loc' => $request->location]);
     }
+
+    public function eraseToOrderComment($loc, $place){
+
+        // dump($loc, $place);
+        
+        $place = Storage::where(['place' => $place, 'location' => $loc])->first();
+
+        $place->update(['status' => NULL,
+                        'email_send' => NULL,
+                        'ebm_started' => NULL]);
+
+        $objStorage = Storage::whereRaw('(quantity < min_quantity OR (status IS NOT NULL OR email_send IS NOT NULL OR ebm_started IS NOT NULL)) AND location=?', [$loc])
+        ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')
+        ->paginate(15);
+
+        return view('admin.toorder', ['objStorage' => $objStorage, 'loc' => $loc]);        
+    
+    }
     
     public function getCSV($loc)
     {
