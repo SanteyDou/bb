@@ -51,6 +51,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/{loc}/toorder/getcsv', 'Admin\StoreController@toOrderGetCSV')->middleware(['auth', 'admin'])->name('admin.toorder.getcsv');
     Route::get('/{loc}/editorder/{place}', 'Admin\StoreController@editToOrderForm')->middleware(['auth', 'admin'])->name('admin.editOrderForm');
     Route::post('/{loc}/editorder/{place}', 'Admin\StoreController@editToOrder')->middleware(['auth', 'admin'])->name('admin.editOrder');
+    Route::get('/{loc}/eraseordercomments/{place}', 'Admin\StoreController@eraseToOrderComment')->middleware(['auth', 'admin'])->name('admin.eraseOrderComment');
 
     Route::get('/{loc}/logs', 'Admin\LogController@logs')->middleware(['auth', 'admin'])->name('admin.logs');
     // Route::post('/{loc}/logs', 'Admin\LogController@logsSearch')->middleware(['auth', 'admin'])->name('admin.logsSearch');
