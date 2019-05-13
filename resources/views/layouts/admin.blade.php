@@ -143,6 +143,36 @@
                       </table>
                   </div> 
                 </div>           
+              </div>
+
+              <div class="panel">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#ori">
+                      Тернопіль-Оріон</a>
+                  </h4>
+                </div>
+                <div id="ori" class="panel-collapse collapse {{ ($loc == 'ori') ? 'in' : '' }}">
+                  <div class="panel-body">
+                      <table class="table">
+                          <tr>
+                              <td>
+                                  <a href="{{ route('admin') }}/ori">Склад</a>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <a href="{{ route('admin') }}/ori/toorder">Дозамовити</a>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <a href="{{ route('admin') }}/ori/logs">Логи</a>
+                              </td>
+                          </tr>
+                      </table>
+                  </div> 
+                </div>           
               </div>  
 
 
