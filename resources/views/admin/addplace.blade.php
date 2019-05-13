@@ -3,7 +3,6 @@
 @section('admin_content')
 
 
-
 <div class="container-fluid">
 
   <h2>Cклад {{ strtoupper($loc) }}</h2>
