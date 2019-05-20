@@ -49,7 +49,7 @@
             <option value="che">Чернівці</option>
             <option value="cho">Чортків</option>
             <option value="khm">Хмельницький</option>
-            <option value="ori">Тернопіль-Оріон</option>
+            <option value="ori">Оріон</option>
         </select>
     </div>
 

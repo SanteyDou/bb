@@ -149,7 +149,7 @@
                 <div class="panel-heading">
                   <h4 class="panel-title">
                       <a data-toggle="collapse" data-parent="#accordion" href="#ori">
-                      Тернопіль-Оріон</a>
+                      Оріон</a>
                   </h4>
                 </div>
                 <div id="ori" class="panel-collapse collapse {{ ($loc == 'ori') ? 'in' : '' }}">
