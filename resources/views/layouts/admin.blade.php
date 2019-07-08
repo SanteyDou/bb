@@ -84,6 +84,35 @@
                 </div>           
               </div>   
 
+              <div class="panel">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#che2">
+                      Чернівці 2</a>
+                  </h4>
+                </div>
+                <div id="che2" class="panel-collapse collapse {{ ($loc == 'che2') ? 'in' : '' }}">
+                  <div class="panel-body">
+                      <table class="table">
+                          <tr>
+                              <td>
+                                  <a href="{{ route('admin') }}/che2">Склад</a>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <a href="{{ route('admin') }}/che2/toorder">Дозамовити</a>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <a href="{{ route('admin') }}/che2/logs">Логи</a>
+                              </td>
+                          </tr>
+                      </table>
+                  </div> 
+                </div>           
+              </div>  
 
               <div class="panel">
                 <div class="panel-heading">
