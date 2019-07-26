@@ -82,10 +82,8 @@ class UserController extends Controller
 
   public function ajaxRequest()
   {
-
     $user = User::where('personal_id', request()->personal_id)->first();
 
     return response()->json(['location' => $user->location]);
-
   }
 }
