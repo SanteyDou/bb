@@ -195,15 +195,20 @@ class StoreController extends Controller
     
     public function getCSV($loc)
     {
-        $data = Storage::where('location', $loc)
-                    ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')
-                    ->get(['location', 'place', 'matchcode', 'category_id', 'quantity']);
+        $stock_report = Storage::where('location', $loc)
+            ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')
+            ->get(['location', 'place', 'matchcode', 'category_id', 'quantity']);
+
+        $categories = Category::get(['id', 'name']);
 
         $name = $loc . '_' . date("Y-m-d H:i:s");
 
-        Excel::create($name , function($excel) use($data) {
-                $excel->sheet('Sheet 1', function($sheet) use($data) {
-                $sheet->fromArray($data);
+        Excel::create($name , function($excel) use($stock_report, $categories) {
+            $excel->sheet('Sheet 1', function($sheet) use($stock_report) {
+                $sheet->fromArray($stock_report);
+            });
+            $excel->sheet('Sheet 2', function($sheet) use($categories) {
+                $sheet->fromArray($categories);
             });
         })->download('xlsx');
 
