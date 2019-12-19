@@ -197,7 +197,7 @@ class StoreController extends Controller
     {
         $data = Storage::where('location', $loc)
                     ->orderByRaw('LEFT(place, 3) asc, CAST(substr(place,4) as unsigned) desc')
-                    ->get(['location', 'place', 'matchcode', 'category', 'quantity']);
+                    ->get(['location', 'place', 'matchcode', 'category_id', 'quantity']);
 
         $name = $loc . '_' . date("Y-m-d H:i:s");
 
