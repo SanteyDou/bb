@@ -118,6 +118,36 @@
               <div class="panel">
                 <div class="panel-heading">
                   <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#choprd">
+                      Чортків Виробництво</a>
+                  </h4>
+                </div>
+                <div id="choprd" class="panel-collapse collapse {{ ($loc == 'choprd') ? 'in' : '' }}">
+                  <div class="panel-body">
+                      <table class="table">
+                          <tr>
+                              <td>
+                                  <a href="{{ route('admin') }}/choprd">Склад</a>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <a href="{{ route('admin') }}/choprd/toorder">Дозамовити</a>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <a href="{{ route('admin') }}/choprd/logs">Логи</a>
+                              </td>
+                          </tr>
+                      </table>
+                  </div> 
+                </div>           
+              </div>  
+
+              <div class="panel">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
                       <a data-toggle="collapse" data-parent="#accordion" href="#khm">
                       Хмельницький</a>
                   </h4>
