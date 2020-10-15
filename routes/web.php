@@ -11,6 +11,12 @@
 |
 */
 
+$proxy_url = getenv('PROXY_URL');
+
+if (!empty($proxy_url)) {
+   URL::forceRootUrl($proxy_url);
+}
+
 Route::get('/', 'StoreController@index')->name('main');
 Route::post('/add', 'StoreController@store')->name('main.post');
 
@@ -19,10 +25,9 @@ Route::get('/ajaxRequestByPlace', 'StoreController@ajaxRequestByPlace');
 Route::get('/ajaxRequestByMatchcode', 'StoreController@ajaxRequestByMatchcode');
 Route::get('/ajaxRequestSearch', 'StoreController@ajaxRequestSearch');
 
-
 Auth::routes();
 
-Route::prefix('admin')->group(function () {
+Route::prefix('/admin')->group(function () {
     Route::get('/', 'Admin\StoreController@index')->middleware(['auth', 'admin'])->name('admin');
 
     Route::get('/users', 'Admin\UserController@index')->middleware(['auth', 'admin'])->name('admin.users');
@@ -56,5 +61,4 @@ Route::prefix('admin')->group(function () {
     Route::get('/{loc}/logs', 'Admin\LogController@logs')->middleware(['auth', 'admin'])->name('admin.logs');
     // Route::post('/{loc}/logs', 'Admin\LogController@logsSearch')->middleware(['auth', 'admin'])->name('admin.logsSearch');
     Route::get('/{loc}/logs/getcsv', 'Admin\LogController@getCSV')->middleware(['auth', 'admin'])->name('admin.logs.getCSV');
-    
 });

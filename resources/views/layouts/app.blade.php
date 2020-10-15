@@ -11,8 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/jquery-ui.css') }}" rel="stylesheet">
 
     @yield('style')
     
@@ -88,11 +88,11 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('/js/app.js') }}"></script>
 
-    <script  src="{{ asset('js/jquery-1.12.4.js') }}"></script>
-    <script  src="{{ asset('js/jquery-ui.js') }}"></script>
-    <script defer src="{{ asset('js/font-awesome.js') }}"></script>
+    <script  src="{{ asset('/js/jquery-1.12.4.js') }}"></script>
+    <script  src="{{ asset('/js/jquery-ui.js') }}"></script>
+    <script defer src="{{ asset('/js/font-awesome.js') }}"></script>
 
     @yield('scripts')
 
