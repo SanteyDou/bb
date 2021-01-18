@@ -15,7 +15,7 @@
     width: 40px;
 }
 ::-webkit-scrollbar-thumb {
-    background: lightblue; 
+    background: lightblue;
     border-radius: 10px;
 }
 </style>
@@ -31,7 +31,7 @@
             <option value=""></option>
             <option value="ter">Тернопіль</option>
             <option value="che">Чернівці</option>
-            <option value="che2">Чернівці 2</option>
+            <!-- <option value="che2">Чернівці 2</option> -->
             <option value="cho">Чортків</option>
             <option value="khm">Хмельницький</option>
             <option value="ori">Оріон</option>
@@ -40,7 +40,7 @@
             @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
-        </select>    
+        </select>
         @if ($errors->has('category'))
             <span class="help-block">
                 <strong>{{ $errors->first('category') }}</strong>
@@ -97,14 +97,14 @@
 
                             <div id="select_location" class="col-md-3 has-error">
                                 <select id="location" type="text" class="form-control" name="location" value="" required>
-                                    <option value="none">Не вибрано</option>                                
+                                    <option value="none">Не вибрано</option>
                                     <option value="ter">Тернопіль</option>
                                     <option value="che">Чернівці</option>
-                                    <option value="che2">Чернівці 2</option>
+                                    <!-- <option value="che2">Чернівці 2</option> -->
                                     <option value="cho">Чортків</option>
                                     <option value="khm">Хмельницький</option>
                                     <option value="ori">Оріон</option>
-                                </select>    
+                                </select>
                                 @if ($errors->has('location'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('location') }}</strong>
@@ -133,7 +133,7 @@
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
-                                </select>    
+                                </select>
                                 @if ($errors->has('category'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('category') }}</strong>
@@ -155,12 +155,12 @@
                             </div> --}}
                         </div>
                         <div class="form-group{{ $errors->has('quantity') ? ' has-error' : '' }}">
-                            
+
                             <label for="quantity" class="col-md-3 control-label" style="margin: 0 -10px 0 0">Кількість</label>
-                            
+
                             <div class="col-md-2" style="margin: 0 -10px 0 0">
                                 <input id="quantity-aviable" type="text" name="quantity-aviable" class="form-control text-center" value="" style="font-size: 26px; padding: 0" disabled>
-                            </div>                           
+                            </div>
 
                             <div class="col-md-2" style="margin: 0 -10px 0 0">
                                 <input id="quantity" type="number" name="quantity" min="1" class="form-control text-center font-weight-bold" value="" style="font-size: 26px; padding: 0" required>
@@ -203,7 +203,7 @@
                                     Внести в базу
                                 </button>
                             </div>
-                        </div>        
+                        </div>
 
                     </form>
 
@@ -259,7 +259,7 @@
 
         if(e.which == 13) {
             var personal_id = $("input[name=personal_id]").val();
-            
+
             $.ajax({
                 type:'GET',
 
@@ -292,7 +292,7 @@
             var location = $("select[name=location]").val();
             $("input[name=quantity]").val('');
             console.log(location);
-            
+
             $.ajax({
                 type:'GET',
 
@@ -360,7 +360,7 @@
             success:function(data){
                 $('#search-table').append(
                 $.map(data, function (item, index) {
-                    return '<tr><td>' + item.place +     
+                    return '<tr><td>' + item.place +
                     '</td><td>' + item.matchcode +
                     '</td><td>' + item.quantity + '</td></tr>';
                 }).join());

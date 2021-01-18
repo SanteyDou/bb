@@ -1,13 +1,13 @@
 @extends('layouts.app')
-    
+
 @section('content')
 
     <div class="container-fluid">
       <div class="row">
 
         <div class="col-sm-2 col-md-2 ">
-            
-            <div class="panel panel-default">              
+
+            <div class="panel panel-default">
               <div class="panel-heading">
                 <h4 class="panel-title">
                     <a href="{{ route('admin.cat') }}">
@@ -49,9 +49,9 @@
                                 </td>
                             </tr>
                         </table>
-                    </div>            
+                    </div>
                 </div>
-              </div>   
+              </div>
 
 
               <div class="panel">
@@ -80,11 +80,11 @@
                               </td>
                           </tr>
                       </table>
-                  </div> 
-                </div>           
-              </div>   
+                  </div>
+                </div>
+              </div>
 
-              <div class="panel">
+              <!-- <div class="panel">
                 <div class="panel-heading">
                   <h4 class="panel-title">
                       <a data-toggle="collapse" data-parent="#accordion" href="#che2">
@@ -110,9 +110,9 @@
                               </td>
                           </tr>
                       </table>
-                  </div> 
-                </div>           
-              </div>  
+                  </div>
+                </div>
+              </div>   -->
 
               <div class="panel">
                 <div class="panel-heading">
@@ -140,9 +140,9 @@
                               </td>
                           </tr>
                       </table>
-                  </div> 
-                </div>           
-              </div>  
+                  </div>
+                </div>
+              </div>
 
               <div class="panel">
                 <div class="panel-heading">
@@ -170,8 +170,8 @@
                               </td>
                           </tr>
                       </table>
-                  </div> 
-                </div>           
+                  </div>
+                </div>
               </div>
 
               <div class="panel">
@@ -200,14 +200,14 @@
                               </td>
                           </tr>
                       </table>
-                  </div> 
-                </div>           
-              </div>  
+                  </div>
+                </div>
+              </div>
 
 
             </div>
-          </div>        
-        </div>      
+          </div>
+        </div>
 
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">

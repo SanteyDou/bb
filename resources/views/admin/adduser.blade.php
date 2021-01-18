@@ -44,10 +44,10 @@
     <div class="form-group">
     <label for="location">Локація</label>
     <select id="location" type="test" class="form-control" name="location" value="{{ old('location') }}" required>
-        <option value=""></option>    
+        <option value=""></option>
         <option value="ter">Тернопіль</option>
         <option value="che">Чернівці</option>
-        <option value="che2">Чернівці 2</option>
+        <!-- <option value="che2">Чернівці 2</option> -->
         <option value="cho">Чортків</option>
         <option value="khm">Хмельницький</option>
         <option value="ori">Оріон</option>
@@ -63,9 +63,9 @@
         <label class="form-check-label" for="admin">
             Адміністратор
         </label>
-        
+
     </div>
-   
+
     <div class="form-group text-right">
       <button type="submit" class="btn btn-primary">Додати</button>
     </div>
